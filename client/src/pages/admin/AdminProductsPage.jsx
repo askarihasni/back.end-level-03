@@ -345,7 +345,7 @@ export default function AdminProductsPage() {
               value={form.name}
               onChange={updateField('name')}
               aria-invalid={Boolean(formErrors.name)}
-              placeholder="e.g. AeroBook Pro 14 Laptop"
+              placeholder="e.g. Nike Air Max 270"
             />
             {formErrors.name ? <span className="field-error">{formErrors.name}</span> : null}
           </div>

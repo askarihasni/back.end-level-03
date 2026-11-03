@@ -4,16 +4,27 @@
    ========================================================================== */
 
 :root {
+  /* Kickzone / Nexora Dark Neon Palette */
+  --neon-lime: #D2F800;
+  --neon-lime-hover: #BFDF00;
+  --neon-lime-glow: rgba(210, 248, 0, 0.4);
+  --bg-pitch-black: #0A0A0A;
+  --bg-charcoal: #121212;
+  --card-dark: #161616;
+  --card-dark-hover: #1D1D1D;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-active: #D2F800;
+
   /* NEXORA Primary Brand Palette */
   --primary-navy: #081426;
   --secondary-navy: #10233F;
-  --electric-blue: #3478F6;
-  --electric-blue-hover: #4888ff;
-  --electric-blue-glow: rgba(52, 120, 246, 0.35);
-  --accent-cyan: #39C6E8;
-  --accent-cyan-glow: rgba(57, 198, 232, 0.35);
-  --accent-lime: #10B981;
-  --accent-lime-glow: rgba(16, 185, 129, 0.35);
+  --electric-blue: #D2F800;
+  --electric-blue-hover: #BFDF00;
+  --electric-blue-glow: rgba(210, 248, 0, 0.35);
+  --accent-cyan: #D2F800;
+  --accent-cyan-glow: rgba(210, 248, 0, 0.35);
+  --accent-lime: #D2F800;
+  --accent-lime-glow: rgba(210, 248, 0, 0.35);
 
   /* Light Theme Canvas & Surface */
   --ink: #111827;

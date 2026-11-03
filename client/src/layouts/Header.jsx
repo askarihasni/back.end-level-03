@@ -63,12 +63,14 @@ export default function Header() {
 
         <nav className="site-nav" aria-label="Main navigation">
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : undefined)}>
-            Shop
+            Каталог
           </NavLink>
-          <a href="/#showcase">Showcase</a>
-          <a href="/#advantages">Innovation</a>
-          <a href="/#catalog">Catalog</a>
-          {user?.role === 'customer' ? <NavLink to="/orders">My Orders</NavLink> : null}
+          <a href="/#catalog">Мужчинам</a>
+          <a href="/#catalog">Женщинам</a>
+          <a href="/#popular-heading">Новинки</a>
+          <a href="/#catalog">Бренды</a>
+          <a href="/#catalog">Акции</a>
+          {user?.role === 'customer' ? <NavLink to="/orders">Заказы</NavLink> : null}
           {user?.role === 'admin' ? (
             <NavLink to="/admin" className="site-nav__admin">
               <LayoutDashboard size={15} />
@@ -118,15 +120,15 @@ export default function Header() {
           ) : !loading ? (
             <div className="header-auth">
               <Link to="/login" className="button button--ghost button--small">
-                Sign in
+                Войти
               </Link>
               <Link to="/register" className="button button--primary button--small header-auth__register">
-                Register
+                Регистрация
               </Link>
             </div>
           ) : null}
 
-          {/* Cart Drawer Trigger Button */}
+          {/* Cart Drawer Trigger Button (Neon Lime Pill from Reference Design) */}
           <button
             type="button"
             className="cart-button"
@@ -134,10 +136,9 @@ export default function Header() {
             aria-label={`Shopping cart with ${itemCount} items`}
           >
             <div className="cart-button__icon-wrap">
-              <ShoppingBag size={18} />
-              {itemCount > 0 && <span className="cart-button__count">{itemCount}</span>}
+              <ShoppingBag size={17} />
             </div>
-            <span className="cart-button__label">Cart</span>
+            <span className="cart-button__label">Корзина {itemCount}</span>
           </button>
 
           <button
