@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Accessories collection illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e7eef6"/>
+      <stop offset="1" stop-color="#ccdaea"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2b3a4d"/>
+      <stop offset="1" stop-color="#1a2431"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="36" fill="url(#bg)"/>
+  <circle cx="640" cy="120" r="92" fill="#ffffff" opacity=".4"/>
+  <circle cx="120" cy="500" r="104" fill="#a9c1da" opacity=".5"/>
+  <g transform="translate(122 258)">
+    <rect x="0" y="0" width="420" height="150" rx="20" fill="url(#board)"/>
+    <rect x="16" y="16" width="388" height="118" rx="12" fill="#33465c"/>
+    <g fill="#8fa6bd">
+      <rect x="34" y="34" width="30" height="30" rx="6"/><rect x="72" y="34" width="30" height="30" rx="6"/>
+      <rect x="110" y="34" width="30" height="30" rx="6"/><rect x="148" y="34" width="30" height="30" rx="6"/>
+      <rect x="186" y="34" width="30" height="30" rx="6"/><rect x="224" y="34" width="30" height="30" rx="6"/>
+      <rect x="262" y="34" width="30" height="30" rx="6"/><rect x="300" y="34" width="30" height="30" rx="6"/>
+      <rect x="338" y="34" width="30" height="30" rx="6"/>
+      <rect x="34" y="84" width="52" height="30" rx="6"/><rect x="94" y="84" width="30" height="30" rx="6"/>
+      <rect x="132" y="84" width="30" height="30" rx="6"/><rect x="170" y="84" width="30" height="30" rx="6"/>
+      <rect x="208" y="84" width="30" height="30" rx="6"/><rect x="246" y="84" width="30" height="30" rx="6"/>
+      <rect x="284" y="84" width="30" height="30" rx="6"/><rect x="322" y="84" width="30" height="30" rx="6"/>
+      <rect x="360" y="84" width="30" height="30" rx="6"/>
+    </g>
+  </g>
+  <g transform="translate(558 322)">
+    <rect x="0" y="0" width="96" height="160" rx="48" fill="#22303f"/>
+    <rect x="30" y="22" width="36" height="70" rx="18" fill="#c6d6e6" opacity=".8"/>
+    <path d="M48 0 v-26" stroke="#22303f" stroke-width="6"/>
+  </g>
+  <g fill="#1a2431" opacity=".22">
+    <rect x="70" y="116" width="70" height="8" rx="4"/>
+    <rect x="70" y="138" width="46" height="8" rx="4"/>
+  </g>
+</svg>

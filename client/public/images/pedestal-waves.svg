@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" fill="none">
+  <defs>
+    <!-- Wave Ridge 1 Gradient -->
+    <linearGradient id="wave1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141E2E" />
+      <stop offset="45%" stop-color="#0B121E" />
+      <stop offset="100%" stop-color="#03070E" />
+    </linearGradient>
+
+    <!-- Wave Ridge 2 Gradient (Foreground) -->
+    <linearGradient id="wave2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E2B3E" />
+      <stop offset="60%" stop-color="#0E1624" />
+      <stop offset="100%" stop-color="#040810" />
+    </linearGradient>
+
+    <!-- Ambient Glow along the horizon ridge -->
+    <radialGradient id="ridgeGlow" cx="50%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.35" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#081426" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Ridge Atmosphere Glow -->
+  <ellipse cx="600" cy="90" rx="500" ry="80" fill="url(#ridgeGlow)" />
+
+  <!-- Back Dune Layer -->
+  <path d="M 0 120 Q 320 20 600 110 T 1200 80 L 1200 360 L 0 360 Z" fill="url(#wave1)" />
+
+  <!-- Topographic Contour Lines on Back Dune -->
+  <path d="M 80 130 Q 340 35 620 120 Q 900 70 1140 100" stroke="#38BDF8" stroke-width="1.5" stroke-opacity="0.32" fill="none" />
+  <path d="M 140 160 Q 380 70 650 145 Q 920 100 1160 130" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.22" fill="none" />
+
+  <!-- Middle Dune Layer -->
+  <path d="M 0 170 Q 280 80 620 170 Q 920 120 1200 180 L 1200 360 L 0 360 Z" fill="url(#wave2)" />
+
+  <!-- Foreground Deep Dune Layer -->
+  <path d="M 0 230 Q 340 160 650 240 Q 940 180 1200 250 L 1200 360 L 0 360 Z" fill="#030710" />
+
+  <!-- Foreground Edge Contour Glow -->
+  <path d="M 0 230 Q 340 160 650 240 Q 940 180 1200 250" stroke="#38BDF8" stroke-width="1.8" stroke-opacity="0.25" fill="none" />
+  <path d="M 40 270 Q 380 200 680 275 Q 960 220 1200 290" stroke="#38BDF8" stroke-width="0.8" stroke-opacity="0.15" fill="none" />
+</svg>
+

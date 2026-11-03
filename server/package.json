@@ -1,0 +1,30 @@
+{
+  "name": "smart-ecommerce-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "REST API for the Smart E-Commerce & Order Fulfillment System",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "db:init": "node scripts/db-init.js",
+    "db:seed": "node scripts/db-seed.js",
+    "db:setup": "node scripts/db-init.js && node scripts/db-seed.js",
+    "prepare:test-db": "node scripts/prepare-test-db.js",
+    "test": "node scripts/run-tests.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.13.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

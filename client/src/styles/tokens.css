@@ -1,0 +1,92 @@
+/* ==========================================================================
+   NEXORA — Design Tokens
+   Brand: NEXORA — Technology. Quality. Delivered.
+   ========================================================================== */
+
+:root {
+  /* NEXORA Primary Brand Palette */
+  --primary-navy: #081426;
+  --secondary-navy: #10233F;
+  --electric-blue: #3478F6;
+  --electric-blue-hover: #4888ff;
+  --electric-blue-glow: rgba(52, 120, 246, 0.35);
+  --accent-cyan: #39C6E8;
+  --accent-cyan-glow: rgba(57, 198, 232, 0.35);
+  --accent-lime: #10B981;
+  --accent-lime-glow: rgba(16, 185, 129, 0.35);
+
+  /* Light Theme Canvas & Surface */
+  --ink: #111827;
+  --ink-2: #1e293b;
+  --ink-soft: #334155;
+  --muted: #64748B;
+  --muted-2: #94A3B8;
+  --line: #E2E8F0;
+  --line-strong: #CBD5E1;
+  --surface: #FFFFFF;
+  --surface-2: #F8FAFC;
+  --canvas: #F6F8FC;
+  --canvas-2: #EDF2F7;
+
+  /* Accent semantic bindings */
+  --accent: #3478F6;
+  --accent-strong: #2563EB;
+  --accent-soft: #EFF6FF;
+  --accent-line: #BFDBFE;
+  --gold: #F59E0B;
+  --gold-soft: #FEF3C7;
+  --danger: #EF4444;
+  --danger-strong: #DC2626;
+  --danger-soft: #FEE2E2;
+  --warning: #F59E0B;
+  --warning-soft: #FEF3C7;
+  --success: #10B981;
+  --success-soft: #D1FAE5;
+  --info: #39C6E8;
+  --info-soft: #E0F2FE;
+
+  /* Dark Theme Showcase Tokens (Matching Reference Video) */
+  --dark-bg: #050B14;
+  --dark-bg-2: #081426;
+  --dark-surface: #0D192E;
+  --dark-surface-2: #13223B;
+  --dark-card: rgba(13, 25, 46, 0.7);
+  --dark-card-hover: rgba(19, 34, 59, 0.9);
+  --dark-border: rgba(57, 198, 232, 0.15);
+  --dark-border-strong: rgba(52, 120, 246, 0.4);
+  --dark-text: #F8FAFC;
+  --dark-text-muted: #94A3B8;
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-serif: "Instrument Serif", "Playfair Display", Georgia, serif;
+
+  /* Shape & Depth */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(8, 20, 38, 0.05);
+  --shadow-sm: 0 2px 8px rgba(8, 20, 38, 0.06), 0 1px 2px rgba(8, 20, 38, 0.04);
+  --shadow-md: 0 12px 32px -10px rgba(8, 20, 38, 0.12), 0 2px 6px rgba(8, 20, 38, 0.05);
+  --shadow-lg: 0 24px 60px -15px rgba(8, 20, 38, 0.22);
+  --shadow-glow: 0 0 35px rgba(52, 120, 246, 0.28);
+  --shadow-glow-cyan: 0 0 35px rgba(57, 198, 232, 0.28);
+  --shadow-glow-lime: 0 0 35px rgba(16, 185, 129, 0.28);
+
+  /* Layout */
+  --max-width: 1320px;
+  --max-width-narrow: 920px;
+  --gutter: clamp(1.2rem, 4vw, 2.8rem);
+  --header-height: 78px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --speed: 220ms;
+  --speed-slow: 400ms;
+}

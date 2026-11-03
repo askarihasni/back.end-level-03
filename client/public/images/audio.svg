@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Audio collection illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#efe8f6"/>
+      <stop offset="1" stop-color="#d9cde9"/>
+    </linearGradient>
+    <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#33283f"/>
+      <stop offset="1" stop-color="#1d1626"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="36" fill="url(#bg)"/>
+  <circle cx="150" cy="130" r="86" fill="#ffffff" opacity=".45"/>
+  <circle cx="664" cy="474" r="112" fill="#c3b0da" opacity=".55"/>
+  <g transform="translate(238 140)">
+    <path d="M40 196 v-56 a122 122 0 0 1 244 0 v56" fill="none" stroke="#241c30" stroke-width="30" stroke-linecap="round"/>
+    <rect x="0" y="176" width="92" height="150" rx="34" fill="url(#cup)"/>
+    <rect x="232" y="176" width="92" height="150" rx="34" fill="url(#cup)"/>
+    <rect x="18" y="198" width="56" height="106" rx="22" fill="#6f5a86" opacity=".55"/>
+    <rect x="250" y="198" width="56" height="106" rx="22" fill="#6f5a86" opacity=".55"/>
+  </g>
+  <g fill="none" stroke="#4b3a60" stroke-width="7" stroke-linecap="round" opacity=".45">
+    <path d="M182 200 a46 46 0 0 1 0 60"/>
+    <path d="M156 178 a82 82 0 0 1 0 104"/>
+    <path d="M620 220 a46 46 0 0 0 0 60"/>
+    <path d="M646 198 a82 82 0 0 0 0 104"/>
+  </g>
+  <g fill="#33283f" opacity=".18">
+    <circle cx="684" cy="152" r="10"/>
+    <circle cx="712" cy="182" r="6"/>
+    <circle cx="664" cy="196" r="7"/>
+  </g>
+</svg>

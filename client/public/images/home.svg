@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Home and living collection illustration">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7efe4"/>
+      <stop offset="1" stop-color="#ead9c4"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff6d8"/>
+      <stop offset="1" stop-color="#f0cf8f"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" rx="36" fill="url(#bg)"/>
+  <circle cx="656" cy="130" r="88" fill="#ffffff" opacity=".45"/>
+  <ellipse cx="390" cy="512" rx="210" ry="30" fill="#c9ab84" opacity=".35"/>
+  <g transform="translate(300 92)">
+    <path d="M60 46 q0 -30 30 -30 h120 q30 0 30 30 v34 H60 Z" fill="#3b3125"/>
+    <path d="M56 80 h188 l-26 112 H82 Z" fill="url(#glow)"/>
+    <rect x="144" y="192" width="12" height="150" rx="6" fill="#3b3125"/>
+    <rect x="96" y="342" width="108" height="14" rx="7" fill="#3b3125"/>
+    <circle cx="150" cy="206" r="8" fill="#3b3125"/>
+  </g>
+  <g transform="translate(138 372)">
+    <rect x="0" y="60" width="92" height="88" rx="14" fill="#c08a5e"/>
+    <path d="M46 0 c34 20 44 44 44 62 H2 C2 44 12 20 46 0Z" fill="#7fa88b"/>
+  </g>
+  <g transform="translate(600 348)">
+    <rect x="0" y="44" width="88" height="104" rx="16" fill="#d9c2a5"/>
+    <rect x="12" y="16" width="64" height="40" rx="10" fill="#b9d6c4"/>
+    <path d="M40 16 v-36" stroke="#7b6a55" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g fill="#6c5a43" opacity=".25">
+    <rect x="96" y="110" width="72" height="8" rx="4"/>
+    <rect x="96" y="132" width="48" height="8" rx="4"/>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+{
+  "name": "smart-ecommerce-order-fulfillment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Smart E-Commerce & Order Fulfillment System (React + Express + PostgreSQL)",
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "db:init": "npm --prefix server run db:init",
+    "db:seed": "npm --prefix server run db:seed",
+    "db:setup": "npm --prefix server run db:setup",
+    "dev": "node scripts/dev.js",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix server test && npm --prefix client test",
+    "test:client": "npm --prefix client test",
+    "test:server": "npm --prefix server test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

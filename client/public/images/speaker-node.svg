@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <!-- Cylindrical Speaker Body Gradient (Midnight Obsidian / Titanium) -->
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#060A12" />
+      <stop offset="14%" stop-color="#111827" />
+      <stop offset="34%" stop-color="#1E293B" />
+      <stop offset="50%" stop-color="#0F172A" />
+      <stop offset="78%" stop-color="#1E293B" />
+      <stop offset="94%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#04070D" />
+    </linearGradient>
+
+    <!-- Top Concave Dome Gradient -->
+    <radialGradient id="domeGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#030712" />
+      <stop offset="70%" stop-color="#0F172A" />
+      <stop offset="90%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </radialGradient>
+
+    <!-- Glowing Top Neon Ring (Cyan/Electric Blue) -->
+    <linearGradient id="ringNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="50%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <!-- Acoustic Fabric Micro-Mesh Simulation -->
+    <pattern id="meshGrid" width="6" height="6" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="1.1" fill="#000000" opacity="0.65" />
+      <circle cx="3" cy="3" r="0.6" fill="#38BDF8" opacity="0.12" />
+    </pattern>
+
+    <!-- Soft Glow Filter -->
+    <filter id="neonBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Dynamic Base Contact Shadow -->
+    <radialGradient id="baseShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#000000" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Contact Ground Shadow -->
+  <ellipse cx="300" cy="510" rx="190" ry="36" fill="url(#baseShadow)" />
+
+  <!-- Main Cylinder Body -->
+  <g>
+    <!-- Base Shell -->
+    <path d="M 160 170 L 160 460 C 160 515, 440 515, 440 460 L 440 170 Z" fill="url(#bodyGrad)" />
+
+    <!-- Acoustic Mesh Inset Overlay -->
+    <path d="M 165 210 L 165 445 C 165 490, 435 490, 435 445 L 435 210 C 435 235, 165 235, 165 210 Z" fill="url(#meshGrid)" />
+
+    <!-- Specular Light Reflection Streaks -->
+    <path d="M 235 160 L 235 470" stroke="#FFFFFF" stroke-width="2.5" stroke-opacity="0.12" />
+    <path d="M 260 165 L 260 480" stroke="#FFFFFF" stroke-width="7" stroke-opacity="0.16" />
+    <path d="M 268 165 L 268 480" stroke="#38BDF8" stroke-width="1.8" stroke-opacity="0.35" />
+
+    <!-- Right Edge Rim Specular Highlight -->
+    <path d="M 432 175 L 432 460" stroke="#38BDF8" stroke-width="2" stroke-opacity="0.25" />
+
+    <!-- Cylinder Base Cap -->
+    <ellipse cx="300" cy="460" rx="140" ry="24" fill="#090E17" stroke="#1E293B" stroke-width="2" />
+
+    <!-- Upper Bezel -->
+    <ellipse cx="300" cy="170" rx="140" ry="28" fill="#0B1321" stroke="#334155" stroke-width="2.5" />
+
+    <!-- Radiant Glowing Ring (Cyan/Electric Blue LED Ring) -->
+    <ellipse cx="300" cy="167" rx="134" ry="25" fill="none" stroke="url(#ringNeon)" stroke-width="4.5" filter="url(#neonBlur)" />
+    <ellipse cx="300" cy="167" rx="134" ry="25" fill="none" stroke="#FFFFFF" stroke-width="1.8" opacity="0.9" />
+
+    <!-- Inner Concave Top Surface -->
+    <ellipse cx="300" cy="166" rx="126" ry="22" fill="url(#domeGrad)" />
+
+    <!-- Center Control Disc -->
+    <ellipse cx="300" cy="166" rx="50" ry="11" fill="#030712" stroke="#1E293B" stroke-width="1.8" />
+    <circle cx="300" cy="166" r="3.5" fill="#38BDF8" filter="url(#neonBlur)" />
+  </g>
+</svg>
+
