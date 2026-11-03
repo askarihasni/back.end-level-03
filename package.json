@@ -8,10 +8,11 @@
     "db:init": "npm --prefix server run db:init",
     "db:seed": "npm --prefix server run db:seed",
     "db:setup": "npm --prefix server run db:setup",
+    "build": "npm --prefix server install && npm --prefix client install && npm --prefix client run build",
+    "start": "node server/src/server.js",
     "dev": "node scripts/dev.js",
     "dev:server": "npm --prefix server run dev",
     "dev:client": "npm --prefix client run dev",
-    "build": "npm --prefix client run build",
     "test": "npm --prefix server test && npm --prefix client test",
     "test:client": "npm --prefix client test",
     "test:server": "npm --prefix server test"
