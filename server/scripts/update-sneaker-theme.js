@@ -38,7 +38,7 @@ const SNEAKER_PRODUCTS = [
     current_price: 25700.0,
     stock_quantity: 3,
     category: 'Basketball',
-    image_url: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/basketball/basketball-1.jpg',
     is_active: true,
   },
   {
@@ -98,7 +98,7 @@ const SNEAKER_PRODUCTS = [
     current_price: 18900.0,
     stock_quantity: 14,
     category: 'Basketball',
-    image_url: 'https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=80',
+    image_url: '/images/basketball/basketball-2.jpg',
     is_active: true,
   },
   {
@@ -153,12 +153,12 @@ const SNEAKER_PRODUCTS = [
   },
   {
     id: 16,
-    name: 'Jordan Jumpman Pro Gym Backpack',
-    description: 'Water-resistant durable 25 L basketball gym backpack with dedicated ball/sneaker compartment.',
-    current_price: 6900.0,
+    name: 'Nike LeBron 21 Prime Court',
+    description: 'Low-profile court dominance with Zoom Air turbo cushioning and 360-degree zoned cables for elite forward play.',
+    current_price: 22400.0,
     stock_quantity: 16,
-    category: 'Accessories',
-    image_url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80',
+    category: 'Basketball',
+    image_url: '/images/basketball/basketball-3.jpg',
     is_active: true,
   },
   {
@@ -173,12 +173,12 @@ const SNEAKER_PRODUCTS = [
   },
   {
     id: 18,
-    name: 'Nike Elite Crew Basketball Socks',
-    description: 'Targeted cushioning at key pressure points with arch band support and Dri-FIT ventilation.',
-    current_price: 1800.0,
+    name: 'Nike Kobe 8 Protro Court Edition',
+    description: 'Engineered mesh upper with full-length Lunarlon foam for legendary perimeter precision and court grip.',
+    current_price: 26900.0,
     stock_quantity: 28,
-    category: 'Accessories',
-    image_url: 'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=800&q=80',
+    category: 'Basketball',
+    image_url: '/images/basketball/basketball-4.jpg',
     is_active: true,
   },
   {

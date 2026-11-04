@@ -5,8 +5,8 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
     <section className="category-banners-section" aria-label="Featured category highlights">
       <div className="container">
         <div className="category-banners-grid">
-          {/* Card 1: Electric Neon Lime Highlight Card */}
-          <article className="banner-card banner-card--neon">
+          {/* Card 1: Electric Neon Lime Highlight Card with 4 Basketball Images */}
+          <article className="banner-card banner-card--neon banner-card--basketball">
             <div className="banner-card__content">
               <div>
                 <span className="banner-card__eyebrow">POPULAR CATEGORY</span>
@@ -24,17 +24,21 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
                 <ArrowRight size={16} />
               </button>
             </div>
-            <div className="banner-card__visual">
-              <img
-                src="/images/banners/banner-basketball.jpg"
-                onError={(e) => {
-                  e.currentTarget.onerror = null;
-                  e.currentTarget.src = 'https://img.freepik.com/free-photo/athlete-playing-basketball-low-angle_23-2148393877.jpg';
-                }}
-                alt="Basketball Player Action"
-                className="banner-card__img"
-                loading="lazy"
-              />
+            <div className="banner-card__visual banner-card__visual--quad">
+              <div className="basketball-quad-grid" aria-label="Basketball category highlights">
+                <div className="basketball-quad-item" title="High-top Basketball Sneaker">
+                  <img src="/images/basketball/basketball-1.jpg" alt="High-top Basketball Sneaker" loading="lazy" />
+                </div>
+                <div className="basketball-quad-item" title="Basketball Swish Net">
+                  <img src="/images/basketball/basketball-2.jpg" alt="Basketball Swish Net" loading="lazy" />
+                </div>
+                <div className="basketball-quad-item" title="Official Leather Game Basketball">
+                  <img src="/images/basketball/basketball-3.jpg" alt="Official Leather Game Basketball" loading="lazy" />
+                </div>
+                <div className="basketball-quad-item" title="Basketball Slam Dunk Action">
+                  <img src="/images/basketball/basketball-4.jpg" alt="Basketball Slam Dunk Action" loading="lazy" />
+                </div>
+              </div>
             </div>
           </article>
 

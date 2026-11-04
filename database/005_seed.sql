@@ -59,7 +59,7 @@ BEGIN
 
       ('Air Jordan 14 Retro Ferrari',
        'Ferrari-inspired design with dual Zoom Air units and premium full-grain leather for explosive court cuts.',
-       25700.00, 3, 'Basketball', 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80', TRUE),
+       25700.00, 3, 'Basketball', '/images/basketball/basketball-1.jpg', TRUE),
 
       ('New Balance 530 Classic White',
        'Classic 2000s running shoe aesthetic with ABZORB heel cushioning for everyday retro streetwear.',
@@ -83,7 +83,7 @@ BEGIN
 
       ('Under Armour Curry 11 Flow',
        'Dual-density UA Flow cushioning for super-light ground feel, bounce, and insane court grip.',
-       18900.00, 14, 'Basketball', 'https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=800&q=80', TRUE),
+       18900.00, 14, 'Basketball', '/images/basketball/basketball-2.jpg', TRUE),
 
       ('Vans Knu Skool Puffy Skate',
        '90s reissue with puffy tongue, 3D molded Sidestripe, and signature waffle gum traction soles.',
@@ -105,17 +105,17 @@ BEGIN
        'Versatile daily trainer with explosive NITRO foam and durable PUMAGRIP all-weather traction.',
        11800.00, 6, 'Running', 'https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=800&q=80', TRUE),
 
-      ('Jordan Jumpman Pro Gym Backpack',
-       'Water-resistant durable 25 L basketball gym backpack with dedicated ball/sneaker compartment.',
-       6900.00, 16, 'Accessories', 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80', TRUE),
+      ('Nike LeBron 21 Prime Court',
+       'Low-profile court dominance with Zoom Air turbo cushioning and 360-degree zoned cables for elite forward play.',
+       22400.00, 16, 'Basketball', '/images/basketball/basketball-3.jpg', TRUE),
 
       ('Garmin Forerunner 265 GPS Watch',
        'Brilliant AMOLED touchscreen sports watch with training readiness metrics and multi-band GPS.',
        48900.00, 9, 'Wearables', 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80', TRUE),
 
-      ('Nike Elite Crew Basketball Socks',
-       'Targeted cushioning at key pressure points with arch band support and Dri-FIT ventilation.',
-       1800.00, 28, 'Accessories', 'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=800&q=80', TRUE),
+      ('Nike Kobe 8 Protro Court Edition',
+       'Engineered mesh upper with full-length Lunarlon foam for legendary perimeter precision and court grip.',
+       26900.00, 28, 'Basketball', '/images/basketball/basketball-4.jpg', TRUE),
 
       ('Theragun Mini 2.0 Recovery Device',
        'Pocket-sized portable percussive therapy device for post-run muscle recovery and athletic relief.',
@@ -208,7 +208,7 @@ BEGIN
     FROM users WHERE email = 'bilal@example.com'
     RETURNING id INTO v_order;
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
-    SELECT v_order, p.id, 2, 6900.00 FROM products p WHERE p.name = 'Jordan Jumpman Pro Gym Backpack';
+    SELECT v_order, p.id, 2, 22400.00 FROM products p WHERE p.name = 'Nike LeBron 21 Prime Court';
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
     SELECT v_order, p.id, 3, 4200.00 FROM products p WHERE p.name = 'Nike Pro Dri-FIT Compression Top';
 
@@ -240,7 +240,7 @@ BEGIN
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
     SELECT v_order, p.id, 2, 19900.00 FROM products p WHERE p.name = 'Theragun Mini 2.0 Recovery Device';
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
-    SELECT v_order, p.id, 1, 6900.00 FROM products p WHERE p.name = 'Jordan Jumpman Pro Gym Backpack';
+    SELECT v_order, p.id, 1, 22400.00 FROM products p WHERE p.name = 'Nike LeBron 21 Prime Court';
 
     -- 11. Ayesha - Aug 2026 - paid
     INSERT INTO orders (user_id, order_date, status)
@@ -270,7 +270,7 @@ BEGIN
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
     SELECT v_order, p.id, 1, 48900.00 FROM products p WHERE p.name = 'Garmin Forerunner 265 GPS Watch';
     INSERT INTO order_items (order_id, product_id, quantity, unit_price_at_purchase)
-    SELECT v_order, p.id, 1, 1800.00 FROM products p WHERE p.name = 'Nike Elite Crew Basketball Socks';
+    SELECT v_order, p.id, 1, 26900.00 FROM products p WHERE p.name = 'Nike Kobe 8 Protro Court Edition';
 
     -- 14. Usman - Oct 2026 - shipped
     INSERT INTO orders (user_id, order_date, status)

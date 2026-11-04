@@ -5161,6 +5161,53 @@
   transform: scale(1.06);
 }
 
+/* 4-Image Basketball Quad Grid on Banner Card */
+.banner-card__visual--quad {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  bottom: 16px;
+  width: 48%;
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.basketball-quad-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.basketball-quad-item {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #0A0A0A;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  transition: transform 0.35s ease;
+}
+
+.basketball-quad-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.banner-card:hover .basketball-quad-item img {
+  transform: scale(1.05);
+}
+
 @media (max-width: 960px) {
   .category-banners-grid {
     grid-template-columns: 1fr;
