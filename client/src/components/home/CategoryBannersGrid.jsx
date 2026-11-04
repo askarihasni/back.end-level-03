@@ -84,7 +84,7 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
               <button
                 type="button"
                 className="banner-card__cta"
-                onClick={() => onSelectCategory('Lifestyle')}
+                onClick={() => onSelectCategory('Streetwear')}
               >
                 <span>Shop Now</span>
                 <ArrowRight size={16} />

@@ -2,11 +2,10 @@ import { Search, X } from 'lucide-react';
 
 const CATEGORIES = [
   { id: '', label: 'All' },
-  { id: 'Running', label: 'Running' },
   { id: 'Basketball', label: 'Basketball' },
+  { id: 'Running', label: 'Running' },
+  { id: 'Streetwear', label: 'Streetwear' },
   { id: 'Training', label: 'Training' },
-  { id: 'Skateboarding', label: 'Skateboarding' },
-  { id: 'Lifestyle', label: 'Lifestyle' },
   { id: 'Accessories', label: 'Accessories' },
 ];
 

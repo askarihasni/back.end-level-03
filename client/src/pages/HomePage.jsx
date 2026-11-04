@@ -71,15 +71,23 @@ export default function HomePage() {
 
   const handleCategorySelect = (cat) => {
     updateParam('category', cat);
-    const catalogElem = document.getElementById('catalog');
-    if (catalogElem) catalogElem.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const catalogElem = document.getElementById('catalog');
+      if (catalogElem) {
+        catalogElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 80);
   };
 
   const submitSearch = (event) => {
     event?.preventDefault();
     updateParam('q', searchDraft.trim());
-    const catalogElem = document.getElementById('catalog');
-    if (catalogElem) catalogElem.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+      const catalogElem = document.getElementById('catalog');
+      if (catalogElem) {
+        catalogElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 80);
   };
 
   const clearFilters = () => {
@@ -124,28 +132,45 @@ export default function HomePage() {
       )}
 
       {/* 4. Three Large Featured Category Banners (Neon Lime, Runner Dark, Lifestyle Dark) */}
-      {!hasFilters && <CategoryBannersGrid onSelectCategory={handleCategorySelect} />}
+      <CategoryBannersGrid onSelectCategory={handleCategorySelect} />
 
       {/* 5. Four-Item Value Props Bar (Wide Selection, Snapshot Prices, Verified Brands, 24/7 Support) */}
-      {!hasFilters && <ValuePropsBar />}
+      <ValuePropsBar />
 
       {/* 6. Nexora VIP Club Banner (Black VIP Card Graphic, 4 Mini Perks, Neon Lime CTA Button) */}
-      {!hasFilters && <ClubBanner />}
+      <ClubBanner />
 
       {/* 7. Complete PostgreSQL Database Catalog Grid */}
       <section className="section section--catalog-dark" id="catalog" aria-labelledby="catalog-heading">
         <div className="container">
           <div className="catalog-header-dark">
             <div>
-              <span className="eyebrow eyebrow--neon">LIVE DATABASE CATALOG</span>
+              <span className="eyebrow eyebrow--neon">
+                {category ? `${category.toUpperCase()} COLLECTION` : q ? 'SEARCH RESULTS' : 'LIVE DATABASE CATALOG'}
+              </span>
               <h2 id="catalog-heading" className="catalog-title-dark">
-                Full Collection
+                {category ? `${category} Footwear & Gear` : q ? `Results for "${q}"` : 'Full Collection'}
               </h2>
               <p className="catalog-subtitle-dark">
                 {pagination
-                  ? `${pagination.total} high-performance models live from PostgreSQL.`
+                  ? `${pagination.total} high-performance models found live in PostgreSQL.`
                   : 'All athletic footwear & sports gear.'}
               </p>
+              {category && (
+                <div style={{ marginTop: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.65rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '0.85rem', color: '#9CA3AF' }}>Active Category:</span>
+                  <span className="rail-pill rail-pill--active" style={{ fontSize: '0.82rem', padding: '0.3rem 0.85rem', cursor: 'default' }}>
+                    {category}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => updateParam('category', '')}
+                    style={{ background: 'transparent', border: 'none', color: '#D2F800', cursor: 'pointer', fontSize: '0.84rem', textDecoration: 'underline' }}
+                  >
+                    Clear Filter (Show All)
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="catalog-filters-dark">

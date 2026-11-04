@@ -43,8 +43,12 @@ export async function listProducts({ page, limit, q, category, sort, availabilit
     conditions.push(`(p.name ILIKE $${params.length} OR COALESCE(p.description, '') ILIKE $${params.length})`);
   }
   if (category) {
-    params.push(category);
-    conditions.push(`p.category = $${params.length}`);
+    if (category.toLowerCase() === 'streetwear') {
+      conditions.push(`p.category IN ('Lifestyle', 'Skateboarding', 'Streetwear')`);
+    } else {
+      params.push(category);
+      conditions.push(`p.category ILIKE $${params.length}`);
+    }
   }
   if (availability === 'in_stock') {
     conditions.push('p.stock_quantity > 0');
