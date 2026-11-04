@@ -5010,15 +5010,72 @@
 
 .banner-card {
   position: relative;
-  border-radius: 22px;
-  padding: 2.2rem;
-  min-height: 290px;
+  border-radius: 24px;
+  padding: 2.2rem 2rem;
+  min-height: 310px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+.banner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+}
+
+.banner-card__content {
+  position: relative;
+  z-index: 2;
+  max-width: 56%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.banner-card__eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.banner-card__title {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1.05;
+  margin: 0.2rem 0 0.6rem 0;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.banner-card__subtitle {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+}
+
+.banner-card__cta {
+  padding: 0.6rem 1.35rem;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+/* Neon card */
 .banner-card--neon {
   background: #D2F800;
   color: #000000;
@@ -5026,49 +5083,27 @@
 
 .banner-card--neon .banner-card__eyebrow {
   color: rgba(0, 0, 0, 0.6);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
 }
 
 .banner-card--neon .banner-card__title {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  font-weight: 900;
-  line-height: 1.1;
-  margin: 0.3rem 0 0.6rem 0;
   color: #000000;
-  text-transform: uppercase;
 }
 
 .banner-card--neon .banner-card__subtitle {
   color: rgba(0, 0, 0, 0.75);
-  font-size: 0.92rem;
-  line-height: 1.45;
-  max-width: 24ch;
 }
 
 .banner-card--neon .banner-card__cta {
   background: #000000;
   color: #FFFFFF;
-  padding: 0.55rem 1.25rem;
-  border-radius: 9999px;
-  border: none;
-  font-weight: 800;
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  margin-top: 1rem;
 }
 
 .banner-card--neon .banner-card__cta:hover {
-  transform: translateX(4px);
+  background: #1C1C1C;
+  transform: translateX(3px);
 }
 
+/* Dark cards */
 .banner-card--dark {
   background: #141414;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -5077,64 +5112,71 @@
 
 .banner-card--dark .banner-card__eyebrow {
   color: #D2F800;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
 }
 
 .banner-card--dark .banner-card__title {
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  font-weight: 900;
-  line-height: 1.1;
-  margin: 0.3rem 0 0.6rem 0;
   color: #FFFFFF;
-  text-transform: uppercase;
 }
 
 .banner-card--dark .banner-card__subtitle {
   color: #9CA3AF;
-  font-size: 0.92rem;
-  line-height: 1.45;
-  max-width: 24ch;
 }
 
 .banner-card--dark .banner-card__cta {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   color: #FFFFFF;
-  padding: 0.55rem 1.25rem;
-  border-radius: 9999px;
-  font-weight: 800;
-  font-size: 0.85rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-top: 1rem;
 }
 
 .banner-card--dark .banner-card__cta:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(3px);
 }
 
+/* The Right Side Visual: Edge-to-Edge with Smooth Gradient Mask */
 .banner-card__visual {
   position: absolute;
-  right: -25px;
-  bottom: -25px;
-  width: 55%;
-  height: 80%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
   pointer-events: none;
-  opacity: 0.9;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 0 24px 24px 0;
 }
 
 .banner-card__img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.banner-card:hover .banner-card__img {
+  transform: scale(1.06);
+}
+
+/* Neon card visual gradient overlay so the photo blends seamlessly */
+.banner-card--neon .banner-card__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to right, #D2F800 0%, rgba(210, 248, 0, 0.5) 25%, transparent 65%);
+  pointer-events: none;
+}
+
+/* Dark card visual gradient overlay so photo blends into #141414 */
+.banner-card--dark .banner-card__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to right, #141414 0%, rgba(20, 20, 20, 0.6) 25%, transparent 65%);
+  pointer-events: none;
 }
 
 @media (max-width: 960px) {

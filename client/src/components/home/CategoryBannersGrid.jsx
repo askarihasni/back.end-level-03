@@ -8,11 +8,13 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
           {/* Card 1: Electric Neon Lime Highlight Card */}
           <article className="banner-card banner-card--neon">
             <div className="banner-card__content">
-              <span className="banner-card__eyebrow">POPULAR CATEGORY</span>
-              <h3 className="banner-card__title">BASKETBALL</h3>
-              <p className="banner-card__subtitle">
-                Control, agility, and court dominance with explosive Zoom Air cushioning.
-              </p>
+              <div>
+                <span className="banner-card__eyebrow">POPULAR CATEGORY</span>
+                <h3 className="banner-card__title">BASKETBALL</h3>
+                <p className="banner-card__subtitle">
+                  Control, agility, and court dominance with explosive Zoom Air cushioning.
+                </p>
+              </div>
               <button
                 type="button"
                 className="banner-card__cta"
@@ -24,8 +26,8 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80"
-                alt="Basketball Performance"
+                src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=800&q=80"
+                alt="Basketball Player Action"
                 className="banner-card__img"
                 loading="lazy"
               />
@@ -35,11 +37,13 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
           {/* Card 2: Dark Runner / Performance Card */}
           <article className="banner-card banner-card--dark">
             <div className="banner-card__content">
-              <span className="banner-card__eyebrow">PERFORMANCE GEAR</span>
-              <h3 className="banner-card__title">RUNNING</h3>
-              <p className="banner-card__subtitle">
-                Lightweight propulsion, endurance speed, and maximum energy return on every stride.
-              </p>
+              <div>
+                <span className="banner-card__eyebrow">PERFORMANCE GEAR</span>
+                <h3 className="banner-card__title">RUNNING</h3>
+                <p className="banner-card__subtitle">
+                  Lightweight propulsion, endurance speed, and maximum energy return on every stride.
+                </p>
+              </div>
               <button
                 type="button"
                 className="banner-card__cta"
@@ -51,8 +55,8 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=80"
-                alt="Running Performance"
+                src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80"
+                alt="Running Performance Legs"
                 className="banner-card__img"
                 loading="lazy"
               />
@@ -62,11 +66,13 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
           {/* Card 3: Dark Lifestyle / Streetwear Card with Neon Accents */}
           <article className="banner-card banner-card--dark">
             <div className="banner-card__content">
-              <span className="banner-card__eyebrow">URBAN LIFESTYLE</span>
-              <h3 className="banner-card__title">STREETWEAR</h3>
-              <p className="banner-card__subtitle">
-                Everyday comfort, classic silhouettes, and retro streetwear aesthetics for life on the move.
-              </p>
+              <div>
+                <span className="banner-card__eyebrow">URBAN LIFESTYLE</span>
+                <h3 className="banner-card__title">STREETWEAR</h3>
+                <p className="banner-card__subtitle">
+                  Everyday comfort, classic silhouettes, and retro streetwear aesthetics for life on the move.
+                </p>
+              </div>
               <button
                 type="button"
                 className="banner-card__cta"
@@ -78,8 +84,8 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=600&q=80"
-                alt="Streetwear Style"
+                src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=800&q=80"
+                alt="Streetwear Sneakers on Feet"
                 className="banner-card__img"
                 loading="lazy"
               />
