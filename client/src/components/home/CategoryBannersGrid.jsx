@@ -5,8 +5,8 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
     <section className="category-banners-section" aria-label="Featured category highlights">
       <div className="container">
         <div className="category-banners-grid">
-          {/* Card 1: Electric Neon Lime Highlight Card with 4 Basketball Images */}
-          <article className="banner-card banner-card--neon banner-card--basketball">
+          {/* Card 1: Dark Basketball Performance Card (Matching Image 2 Color Theme) */}
+          <article className="banner-card banner-card--dark">
             <div className="banner-card__content">
               <div>
                 <span className="banner-card__eyebrow">POPULAR CATEGORY</span>
@@ -24,21 +24,13 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
                 <ArrowRight size={16} />
               </button>
             </div>
-            <div className="banner-card__visual banner-card__visual--quad">
-              <div className="basketball-quad-grid" aria-label="Basketball category highlights">
-                <div className="basketball-quad-item" title="High-top Basketball Sneaker">
-                  <img src="/images/basketball/basketball-1.jpg" alt="High-top Basketball Sneaker" loading="lazy" />
-                </div>
-                <div className="basketball-quad-item" title="Basketball Swish Net">
-                  <img src="/images/basketball/basketball-2.jpg" alt="Basketball Swish Net" loading="lazy" />
-                </div>
-                <div className="basketball-quad-item" title="Official Leather Game Basketball">
-                  <img src="/images/basketball/basketball-3.jpg" alt="Official Leather Game Basketball" loading="lazy" />
-                </div>
-                <div className="basketball-quad-item" title="Basketball Slam Dunk Action">
-                  <img src="/images/basketball/basketball-4.jpg" alt="Basketball Slam Dunk Action" loading="lazy" />
-                </div>
-              </div>
+            <div className="banner-card__visual">
+              <img
+                src="/images/banners/banner-basketball.jpg"
+                alt="Basketball Sneaker and Official Ball"
+                className="banner-card__img"
+                loading="lazy"
+              />
             </div>
           </article>
 
