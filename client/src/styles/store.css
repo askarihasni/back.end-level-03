@@ -1924,6 +1924,63 @@
   color: var(--ink);
 }
 
+.auth-card .form-field > label {
+  color: #1E293B !important;
+  font-weight: 600 !important;
+}
+
+.auth-card input,
+.auth-page input,
+.auth-shell input,
+.auth-card input[type="email"],
+.auth-card input[type="password"],
+.auth-card input[type="text"] {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+  caret-color: #0F172A !important;
+  border: 1.5px solid #CBD5E1 !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.92rem !important;
+  font-weight: 550 !important;
+  opacity: 1 !important;
+}
+
+.auth-card input::placeholder {
+  color: #94A3B8 !important;
+  -webkit-text-fill-color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+.auth-card input:focus {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+  border-color: #3478F6 !important;
+  box-shadow: 0 0 0 3px rgba(52, 120, 246, 0.25) !important;
+  outline: none !important;
+}
+
+/* Chrome/Safari/Edge Autofill text color fix */
+.auth-card input:-webkit-autofill,
+.auth-card input:-webkit-autofill:hover,
+.auth-card input:-webkit-autofill:focus,
+.auth-card input:-webkit-autofill:active {
+  -webkit-text-fill-color: #0F172A !important;
+  -webkit-box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  box-shadow: 0 0 0px 1000px #FFFFFF inset !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+  caret-color: #0F172A !important;
+}
+
+.auth-card .password-toggle {
+  color: #64748B !important;
+}
+
+.auth-card .password-toggle:hover {
+  color: #0F172A !important;
+}
+
 .auth-card h1 {
   font-size: clamp(1.5rem, 2.6vw, 1.95rem);
   color: var(--ink);

@@ -68,6 +68,7 @@ export default function RegisterPage() {
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? 'name-error' : undefined}
             placeholder="Your full name"
+            style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
           />
           {errors.name ? <span className="field-error" id="name-error">{errors.name}</span> : null}
         </div>
@@ -84,6 +85,7 @@ export default function RegisterPage() {
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? 'email-error' : undefined}
             placeholder="you@example.com"
+            style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
           />
           {errors.email ? <span className="field-error" id="email-error">{errors.email}</span> : null}
         </div>
@@ -102,6 +104,7 @@ export default function RegisterPage() {
                 aria-invalid={Boolean(errors.password)}
                 aria-describedby={errors.password ? 'password-error' : 'password-hint'}
                 placeholder="At least 8 characters"
+                style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
               />
               <button
                 type="button"
@@ -131,6 +134,7 @@ export default function RegisterPage() {
               aria-invalid={Boolean(errors.confirmPassword)}
               aria-describedby={errors.confirmPassword ? 'confirm-password-error' : undefined}
               placeholder="Repeat password"
+              style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
             />
             {errors.confirmPassword ? (
               <span className="field-error" id="confirm-password-error">{errors.confirmPassword}</span>

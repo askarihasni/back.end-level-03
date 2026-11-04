@@ -83,6 +83,7 @@ export default function LoginPage() {
             aria-invalid={Boolean(errors.email)}
             aria-describedby={errors.email ? 'email-error' : undefined}
             placeholder="you@example.com"
+            style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
           />
           {errors.email ? <span className="field-error" id="email-error">{errors.email}</span> : null}
         </div>
@@ -100,6 +101,7 @@ export default function LoginPage() {
               aria-invalid={Boolean(errors.password)}
               aria-describedby={errors.password ? 'password-error' : undefined}
               placeholder="Enter your password"
+              style={{ color: '#0F172A', backgroundColor: '#FFFFFF', WebkitTextFillColor: '#0F172A' }}
             />
             <button
               type="button"

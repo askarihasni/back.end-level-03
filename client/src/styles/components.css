@@ -321,8 +321,10 @@
   padding: 0.62rem 0.8rem;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: var(--surface);
-  color: var(--ink);
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+  caret-color: #0F172A !important;
   font-size: 0.9rem;
   transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
 }
@@ -335,7 +337,8 @@
 
 .form-field input::placeholder,
 .form-field textarea::placeholder {
-  color: var(--muted-2);
+  color: #94A3B8 !important;
+  -webkit-text-fill-color: #94A3B8 !important;
 }
 
 .form-field input:focus,
@@ -344,7 +347,8 @@
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(14, 95, 75, 0.14);
-  color: var(--ink);
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
 }
 
 .form-field input[aria-invalid="true"] {
@@ -386,7 +390,10 @@
 
 .password-input input {
   padding-right: 2.9rem;
-  color: var(--ink);
+  color: #0F172A !important;
+  -webkit-text-fill-color: #0F172A !important;
+  caret-color: #0F172A !important;
+  background-color: #FFFFFF !important;
 }
 
 .password-toggle {
