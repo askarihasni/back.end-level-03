@@ -57,7 +57,7 @@ export default function Header() {
   };
 
   return (
-    <header className="site-header">
+    <header className={`site-header${mobileOpen ? ' site-header--mobile-open' : ''}`}>
       <div className="container site-header__inner">
         <Logo />
 
@@ -169,11 +169,13 @@ export default function Header() {
 
           <nav className="mobile-nav__links" aria-label="Mobile navigation">
             <NavLink to="/" end>
-              Shop All Products
+              Catalog
             </NavLink>
-            <a href="/#showcase">Product Showcase</a>
-            <a href="/#advantages">Acoustic Engineering</a>
-            <a href="/#catalog">Full Catalog</a>
+            <a href="/#catalog">Men</a>
+            <a href="/#catalog">Women</a>
+            <a href="/#popular-heading">New Releases</a>
+            <a href="/#catalog">Brands</a>
+            <a href="/#catalog">Sale</a>
             {user?.role === 'customer' ? <NavLink to="/orders">My Orders</NavLink> : null}
             {user?.role === 'admin' ? <NavLink to="/admin">Admin Dashboard</NavLink> : null}
             <button
