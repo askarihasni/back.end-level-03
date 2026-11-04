@@ -101,16 +101,16 @@ export default function HomePage() {
         onCategorySelect={handleCategorySelect}
       />
 
-      {/* 3. Popular Shelf ("ПОПУЛЯРНОЕ / TRENDING NOW" - 5 Horizontal Product Cards) */}
+      {/* 3. Popular Shelf ("POPULAR NOW" - 5 Horizontal Product Cards) */}
       {!hasFilters && popularProducts.length > 0 && (
         <section className="section section--popular" aria-labelledby="popular-heading">
           <div className="container">
             <div className="popular-shelf-header">
               <h2 id="popular-heading" className="popular-shelf-title">
-                ПОПУЛЯРНОЕ
+                POPULAR NOW
               </h2>
               <a href="#catalog" className="popular-shelf-link">
-                <span>Все товары</span>
+                <span>View All Products</span>
               </a>
             </div>
 
@@ -139,30 +139,30 @@ export default function HomePage() {
             <div>
               <span className="eyebrow eyebrow--neon">LIVE DATABASE CATALOG</span>
               <h2 id="catalog-heading" className="catalog-title-dark">
-                Каталог товаров
+                Full Collection
               </h2>
               <p className="catalog-subtitle-dark">
                 {pagination
-                  ? `${pagination.total} товаров в реальном времени из базы данных PostgreSQL.`
-                  : 'Все товары магазина.'}
+                  ? `${pagination.total} high-performance models live from PostgreSQL.`
+                  : 'All athletic footwear & sports gear.'}
               </p>
             </div>
 
             <div className="catalog-filters-dark">
               <label className="select-field-dark">
-                <span>Наличие:</span>
+                <span>Availability:</span>
                 <select
                   value={availability}
                   onChange={(e) => updateParam('availability', e.target.value)}
                 >
-                  <option value="all">Все</option>
-                  <option value="in_stock">В наличии</option>
-                  <option value="out_of_stock">Под заказ</option>
+                  <option value="all">All Items</option>
+                  <option value="in_stock">In Stock</option>
+                  <option value="out_of_stock">Out of Stock</option>
                 </select>
               </label>
 
               <label className="select-field-dark">
-                <span>Сортировка:</span>
+                <span>Sort by:</span>
                 <select value={sort} onChange={(e) => updateParam('sort', e.target.value)}>
                   {SORT_OPTIONS.map((opt) => (
                     <option value={opt.value} key={opt.value}>
@@ -180,11 +180,11 @@ export default function HomePage() {
 
           {!loading && !error && products.length === 0 ? (
             <EmptyState
-              title="Товары не найдены"
-              description="По вашему запросу ничего не найдено."
+              title="No products found"
+              description="No models match your search criteria. Try resetting filters."
               action={
                 <button type="button" className="btn-neon-lime" onClick={clearFilters}>
-                  Сбросить фильтры
+                  Reset Filters
                 </button>
               }
             />

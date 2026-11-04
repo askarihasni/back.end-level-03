@@ -9,77 +9,77 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
           <article className="banner-card banner-card--neon">
             <div className="banner-card__content">
               <span className="banner-card__eyebrow">POPULAR CATEGORY</span>
-              <h3 className="banner-card__title">БАСКЕТБОЛ</h3>
+              <h3 className="banner-card__title">BASKETBALL</h3>
               <p className="banner-card__subtitle">
-                Контроль, лёгкость и уверенность на площадке. Pure acoustic power &amp; dynamic bass.
+                Control, agility, and court dominance with explosive Zoom Air cushioning.
               </p>
               <button
                 type="button"
                 className="banner-card__cta"
-                onClick={() => onSelectCategory('Audio')}
+                onClick={() => onSelectCategory('Basketball')}
               >
-                <span>Смотреть</span>
+                <span>Shop Now</span>
                 <ArrowRight size={16} />
               </button>
             </div>
             <div className="banner-card__visual">
               <img
                 src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80"
-                alt="Basketball & Sound"
+                alt="Basketball Performance"
                 className="banner-card__img"
                 loading="lazy"
               />
             </div>
           </article>
 
-          {/* Card 2: Dark Runner / Computing Card */}
+          {/* Card 2: Dark Runner / Performance Card */}
           <article className="banner-card banner-card--dark">
             <div className="banner-card__content">
               <span className="banner-card__eyebrow">PERFORMANCE GEAR</span>
-              <h3 className="banner-card__title">БЕГ</h3>
+              <h3 className="banner-card__title">RUNNING</h3>
               <p className="banner-card__subtitle">
-                Лёгкость, скорость и максимум результата. High performance laptops &amp; computing nodes.
+                Lightweight propulsion, endurance speed, and maximum energy return on every stride.
               </p>
               <button
                 type="button"
                 className="banner-card__cta"
-                onClick={() => onSelectCategory('Electronics')}
+                onClick={() => onSelectCategory('Running')}
               >
-                <span>Смотреть</span>
+                <span>Shop Now</span>
                 <ArrowRight size={16} />
               </button>
             </div>
             <div className="banner-card__visual">
               <img
                 src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=80"
-                alt="Running & Computing"
+                alt="Running Performance"
                 className="banner-card__img"
                 loading="lazy"
               />
             </div>
           </article>
 
-          {/* Card 3: Dark Lifestyle / Gear Card with Neon Accents */}
+          {/* Card 3: Dark Lifestyle / Streetwear Card with Neon Accents */}
           <article className="banner-card banner-card--dark">
             <div className="banner-card__content">
               <span className="banner-card__eyebrow">URBAN LIFESTYLE</span>
-              <h3 className="banner-card__title">СТИЛЬ</h3>
+              <h3 className="banner-card__title">STREETWEAR</h3>
               <p className="banner-card__subtitle">
-                Комфорт и свобода в каждом шаге. Modern streetwear, watches &amp; wearable tech.
+                Everyday comfort, classic silhouettes, and retro streetwear aesthetics for life on the move.
               </p>
               <button
                 type="button"
                 className="banner-card__cta"
-                onClick={() => onSelectCategory('Fashion')}
+                onClick={() => onSelectCategory('Lifestyle')}
               >
-                <span>Смотреть</span>
+                <span>Shop Now</span>
                 <ArrowRight size={16} />
               </button>
             </div>
             <div className="banner-card__visual">
               <img
                 src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?auto=format&fit=crop&w=600&q=80"
-                alt="Style & Wearable Tech"
+                alt="Streetwear Style"
                 className="banner-card__img"
                 loading="lazy"
               />

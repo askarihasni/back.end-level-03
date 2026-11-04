@@ -65,24 +65,24 @@ export default function HeroShowcase() {
         <div className="hero-kickzone__grid">
           {/* Left Column: Bold Typography & Action Buttons */}
           <div className="hero-kickzone__content">
-            <span className="hero-kickzone__eyebrow">НОВАЯ КОЛЛЕКЦИЯ</span>
+            <span className="hero-kickzone__eyebrow">NEW COLLECTION 2026</span>
 
             <h1 className="hero-kickzone__title">
-              ДВИЖЕНИЕ<br />
-              НАЧИНАЕТСЯ<br />
-              <span className="text-neon-lime">С ТЕБЯ</span>
+              MOVEMENT<br />
+              STARTS<br />
+              <span className="text-neon-lime">WITH YOU</span>
             </h1>
 
             <p className="hero-kickzone__subtitle">
-              Выбирай кроссовки и электронику, которые подходят твоему стилю и ритму жизни.
+              Choose high-performance sneakers and athletic gear tailored to your style and rhythm of life.
             </p>
 
             <div className="hero-kickzone__actions">
               <a href="#catalog" className="btn-neon-lime">
-                <span>Смотреть каталог</span>
+                <span>Explore Catalog</span>
               </a>
               <a href="#catalog" className="btn-dark-ghost">
-                <span>Новинки</span>
+                <span>New Releases</span>
               </a>
             </div>
           </div>
@@ -119,8 +119,8 @@ export default function HeroShowcase() {
                   <Truck size={20} />
                 </div>
                 <div className="floating-badge__text">
-                  <strong>Бесплатная доставка</strong>
-                  <span>от 50 000 Rs</span>
+                  <strong>Free Delivery</strong>
+                  <span>Orders over Rs. 5,000</span>
                 </div>
               </div>
 
@@ -129,8 +129,8 @@ export default function HeroShowcase() {
                   <RotateCcw size={20} />
                 </div>
                 <div className="floating-badge__text">
-                  <strong>Примерка перед оплатой</strong>
-                  <span>14 дней на возврат</span>
+                  <strong>Try Before You Pay</strong>
+                  <span>14-Day Free Returns</span>
                 </div>
               </div>
 
@@ -139,8 +139,8 @@ export default function HeroShowcase() {
                   <Award size={20} />
                 </div>
                 <div className="floating-badge__text">
-                  <strong>100% оригинал</strong>
-                  <span>Гарантия подлинности</span>
+                  <strong>100% Authentic</strong>
+                  <span>Verified Genuine Gear</span>
                 </div>
               </div>
             </div>

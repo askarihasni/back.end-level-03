@@ -1,12 +1,13 @@
 import { Search, X } from 'lucide-react';
 
 const CATEGORIES = [
-  { id: '', labelRu: 'Все', labelEn: 'All' },
-  { id: 'Electronics', labelRu: 'Бег', labelEn: 'Laptops' },
-  { id: 'Audio', labelRu: 'Тренинг', labelEn: 'Audio' },
-  { id: 'Accessories', labelRu: 'Скейтбординг', labelEn: 'Phones' },
-  { id: 'Fashion', labelRu: 'Лайфстайл', labelEn: 'Lifestyle' },
-  { id: 'Sports', labelRu: 'Все категории', labelEn: 'Sports & Gear' },
+  { id: '', label: 'All' },
+  { id: 'Running', label: 'Running' },
+  { id: 'Basketball', label: 'Basketball' },
+  { id: 'Training', label: 'Training' },
+  { id: 'Skateboarding', label: 'Skateboarding' },
+  { id: 'Lifestyle', label: 'Lifestyle' },
+  { id: 'Accessories', label: 'Accessories' },
 ];
 
 export default function CategorySearchRail({
@@ -26,8 +27,8 @@ export default function CategorySearchRail({
             type="search"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
-            placeholder="Поиск по моделям, брендам и категориям..."
-            aria-label="Search models, brands, and categories"
+            placeholder="Search by model, brand, or sport..."
+            aria-label="Search models, brands, and sports"
           />
           {searchQuery && (
             <button
@@ -52,8 +53,7 @@ export default function CategorySearchRail({
                 className={`rail-pill ${isActive ? 'rail-pill--active' : ''}`}
                 onClick={() => onCategorySelect(cat.id)}
               >
-                <span>{cat.labelRu}</span>
-                <span className="rail-pill__en">({cat.labelEn})</span>
+                <span>{cat.label}</span>
               </button>
             );
           })}

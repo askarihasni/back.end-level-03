@@ -23,27 +23,27 @@ export default function ClubBanner() {
 
           {/* Middle: Club Details & Perks */}
           <div className="club-details">
-            <h3 className="club-details__title">СТАНЬ ЧАСТЬЮ ДВИЖЕНИЯ</h3>
+            <h3 className="club-details__title">JOIN THE MOVEMENT</h3>
             <p className="club-details__subtitle">
-              Выходи за рамки, получай больше. Участвуй в эксклюзивных программах и бонусах.
+              Push beyond limits. Earn cashback, unlock members-only drops, and receive exclusive rewards.
             </p>
 
             <div className="club-perks-row">
               <div className="club-perk">
                 <Percent size={14} className="club-perk__icon" />
-                <span>Кэшбек с покупок</span>
+                <span>Cashback on Every Order</span>
               </div>
               <div className="club-perk">
                 <Lock size={14} className="club-perk__icon" />
-                <span>Доступ к закрытым предложениям</span>
+                <span>Secret Member Drops</span>
               </div>
               <div className="club-perk">
                 <Timer size={14} className="club-perk__icon" />
-                <span>Ранний доступ к новинкам</span>
+                <span>Early Access to Releases</span>
               </div>
               <div className="club-perk">
                 <Gift size={14} className="club-perk__icon" />
-                <span>Подарки и бонусы</span>
+                <span>Gifts &amp; Birthday Rewards</span>
               </div>
             </div>
           </div>
@@ -56,9 +56,9 @@ export default function ClubBanner() {
               onClick={() => setJoined(true)}
             >
               <Sparkles size={16} />
-              <span>{joined ? 'Вы в клубе! (Active)' : 'Присоединиться'}</span>
+              <span>{joined ? 'Member Active!' : 'Join Nexora Club'}</span>
             </button>
-            <span className="club-cta-subtext">Бесплатное участие &bull; Instant Activation</span>
+            <span className="club-cta-subtext">Free Membership &bull; Instant Activation</span>
           </div>
         </div>
       </div>

@@ -63,14 +63,14 @@ export default function Header() {
 
         <nav className="site-nav" aria-label="Main navigation">
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : undefined)}>
-            Каталог
+            Catalog
           </NavLink>
-          <a href="/#catalog">Мужчинам</a>
-          <a href="/#catalog">Женщинам</a>
-          <a href="/#popular-heading">Новинки</a>
-          <a href="/#catalog">Бренды</a>
-          <a href="/#catalog">Акции</a>
-          {user?.role === 'customer' ? <NavLink to="/orders">Заказы</NavLink> : null}
+          <a href="/#catalog">Men</a>
+          <a href="/#catalog">Women</a>
+          <a href="/#popular-heading">New Releases</a>
+          <a href="/#catalog">Brands</a>
+          <a href="/#catalog">Sale</a>
+          {user?.role === 'customer' ? <NavLink to="/orders">Orders</NavLink> : null}
           {user?.role === 'admin' ? (
             <NavLink to="/admin" className="site-nav__admin">
               <LayoutDashboard size={15} />
@@ -85,7 +85,7 @@ export default function Header() {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search audio, laptops, phones..."
+            placeholder="Search sneakers, gear, brands..."
             aria-label="Search products"
           />
           {query && (
@@ -120,10 +120,10 @@ export default function Header() {
           ) : !loading ? (
             <div className="header-auth">
               <Link to="/login" className="button button--ghost button--small">
-                Войти
+                Sign In
               </Link>
               <Link to="/register" className="button button--primary button--small header-auth__register">
-                Регистрация
+                Register
               </Link>
             </div>
           ) : null}
@@ -138,7 +138,7 @@ export default function Header() {
             <div className="cart-button__icon-wrap">
               <ShoppingBag size={17} />
             </div>
-            <span className="cart-button__label">Корзина {itemCount}</span>
+            <span className="cart-button__label">Cart {itemCount}</span>
           </button>
 
           <button

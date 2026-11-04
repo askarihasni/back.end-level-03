@@ -247,3 +247,4 @@ updateProducts().catch((err) => {
   console.error('❌ Error updating products:', err);
   process.exit(1);
 });
+
