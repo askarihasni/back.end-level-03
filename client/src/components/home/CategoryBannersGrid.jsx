@@ -26,7 +26,11 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=800&q=80"
+                src="/images/banners/banner-basketball.jpg"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://img.freepik.com/free-photo/athlete-playing-basketball-low-angle_23-2148393877.jpg';
+                }}
                 alt="Basketball Player Action"
                 className="banner-card__img"
                 loading="lazy"
@@ -55,7 +59,11 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80"
+                src="/images/banners/banner-running.jpg"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=80';
+                }}
                 alt="Running Performance Legs"
                 className="banner-card__img"
                 loading="lazy"
@@ -84,7 +92,11 @@ export default function CategoryBannersGrid({ onSelectCategory }) {
             </div>
             <div className="banner-card__visual">
               <img
-                src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=800&q=80"
+                src="/images/banners/banner-streetwear.jpg"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = 'https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=800&q=80';
+                }}
                 alt="Streetwear Sneakers on Feet"
                 className="banner-card__img"
                 loading="lazy"

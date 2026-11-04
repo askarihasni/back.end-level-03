@@ -5134,7 +5134,7 @@
   transform: translateX(3px);
 }
 
-/* The Right Side Visual: Edge-to-Edge with Smooth Gradient Mask */
+/* The Right Side Visual: Edge-to-Edge with Clean Natural Mask */
 .banner-card__visual {
   position: absolute;
   top: 0;
@@ -5145,38 +5145,20 @@
   z-index: 1;
   overflow: hidden;
   border-radius: 0 24px 24px 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 8%, black 24%);
+  mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 8%, black 24%);
 }
 
 .banner-card__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .banner-card:hover .banner-card__img {
   transform: scale(1.06);
-}
-
-/* Neon card visual gradient overlay so the photo blends seamlessly */
-.banner-card--neon .banner-card__visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(to right, #D2F800 0%, rgba(210, 248, 0, 0.5) 25%, transparent 65%);
-  pointer-events: none;
-}
-
-/* Dark card visual gradient overlay so photo blends into #141414 */
-.banner-card--dark .banner-card__visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(to right, #141414 0%, rgba(20, 20, 20, 0.6) 25%, transparent 65%);
-  pointer-events: none;
 }
 
 @media (max-width: 960px) {
