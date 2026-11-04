@@ -68,7 +68,7 @@ export default function AdminLayout() {
 
       <aside className={`admin-sidebar${sidebarOpen ? ' admin-sidebar--open' : ''}`} aria-label="Admin navigation">
         <div className="admin-sidebar__top">
-          <Logo to="/admin" />
+          <Logo to="/admin" compact />
           <button
             type="button"
             className="icon-button admin-sidebar__close"
