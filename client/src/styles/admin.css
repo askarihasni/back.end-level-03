@@ -7,6 +7,7 @@
   grid-template-columns: 252px minmax(0, 1fr);
   min-height: 100vh;
   background: #f4f5f3;
+  color: var(--ink);
 }
 
 .admin-sidebar {
@@ -316,6 +317,7 @@
 }
 
 .metric-card__value {
+  color: var(--ink);
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 2.2vw, 1.7rem);
   font-weight: 700;
@@ -471,6 +473,7 @@
   min-height: 34px;
   border: none;
   background: transparent;
+  color: var(--ink);
   font-size: 0.85rem;
 }
 
@@ -615,6 +618,7 @@
 }
 
 .analytics-metric > strong {
+  color: var(--ink);
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   letter-spacing: -0.02em;

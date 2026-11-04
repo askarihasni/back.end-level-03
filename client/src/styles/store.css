@@ -1920,10 +1920,13 @@
   flex-direction: column;
   justify-content: center;
   padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  background: var(--surface);
+  color: var(--ink);
 }
 
 .auth-card h1 {
   font-size: clamp(1.5rem, 2.6vw, 1.95rem);
+  color: var(--ink);
 }
 
 .auth-card__subtitle {
@@ -1944,11 +1947,13 @@
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius-sm);
   background: var(--surface-2);
+  color: var(--ink);
 }
 
 .demo-credentials strong {
   display: block;
   font-size: 0.8rem;
+  color: var(--ink);
 }
 
 .demo-credentials span {

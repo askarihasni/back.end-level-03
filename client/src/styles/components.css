@@ -322,6 +322,7 @@
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
   background: var(--surface);
+  color: var(--ink);
   font-size: 0.9rem;
   transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease);
 }
@@ -343,6 +344,7 @@
   outline: none;
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(14, 95, 75, 0.14);
+  color: var(--ink);
 }
 
 .form-field input[aria-invalid="true"] {
@@ -384,6 +386,7 @@
 
 .password-input input {
   padding-right: 2.9rem;
+  color: var(--ink);
 }
 
 .password-toggle {
@@ -393,6 +396,11 @@
   transform: translateY(-50%);
   width: 34px;
   height: 34px;
+  color: var(--muted);
+}
+
+.password-toggle:hover {
+  color: var(--ink);
 }
 
 .checkbox-field {
@@ -486,6 +494,7 @@
   border-radius: var(--radius-lg);
   background: var(--surface);
   box-shadow: var(--shadow-xs);
+  color: var(--ink);
 }
 
 .panel--flush {
@@ -509,6 +518,7 @@
 
 .panel__header h2 {
   font-size: 1.14rem;
+  color: var(--ink);
 }
 
 .panel__header p {
