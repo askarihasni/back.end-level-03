@@ -2,7 +2,11 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { PageLoader } from '../components/Feedback.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 
-export default function ProtectedRoute({ roles }) {
+export default function ProtectedRoute({
+  roles,
+  loginPath = '/login',
+  unauthorizedPath,
+}) {
   const { user, loading } = useAuth();
   const location = useLocation();
 
@@ -11,7 +15,7 @@ export default function ProtectedRoute({ roles }) {
   if (!user) {
     return (
       <Navigate
-        to="/login"
+        to={loginPath}
         replace
         state={{ from: `${location.pathname}${location.search}` }}
       />
@@ -19,7 +23,12 @@ export default function ProtectedRoute({ roles }) {
   }
 
   if (roles && !roles.includes(user.role)) {
-    return <Navigate to={user.role === 'admin' ? '/admin' : '/'} replace />;
+    return (
+      <Navigate
+        to={unauthorizedPath || (user.role === 'admin' ? '/admin' : '/')}
+        replace
+      />
+    );
   }
 
   return <Outlet />;

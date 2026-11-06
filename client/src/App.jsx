@@ -56,6 +56,7 @@ export default function App() {
           <Route path="cart" element={<CartPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="admin/login" element={<LoginPage adminOnly />} />
 
           <Route element={<ProtectedRoute roles={['customer']} />}>
             <Route path="checkout" element={<CheckoutPage />} />
@@ -67,7 +68,15 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
-        <Route element={<ProtectedRoute roles={['admin']} />}>
+        <Route
+          element={
+            <ProtectedRoute
+              roles={['admin']}
+              loginPath="/admin/login"
+              unauthorizedPath="/admin/login"
+            />
+          }
+        >
           <Route path="admin" element={<AdminLayout />}>
             <Route index element={<DashboardPage />} />
             <Route path="orders" element={<AdminOrdersPage />} />

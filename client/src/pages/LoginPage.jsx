@@ -6,16 +6,17 @@ import { Spinner } from '../components/Feedback.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { hasErrors, validateLoginForm } from '../utils/validation.js';
 
-function safeDestination(user, from) {
+function safeDestination(user, from, adminOnly = false) {
   if (user.role === 'admin') {
     return from && from.startsWith('/admin') ? from : '/admin';
   }
+  if (adminOnly) return null;
   if (from && from.startsWith('/') && !from.startsWith('/admin')) return from;
   return '/';
 }
 
-export default function LoginPage() {
-  const { user, loading, login } = useAuth();
+export default function LoginPage({ adminOnly = false }) {
+  const { user, loading, login, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from;
@@ -30,8 +31,8 @@ export default function LoginPage() {
     setServerError('');
   }, [form.email, form.password]);
 
-  if (!loading && user) {
-    return <Navigate to={safeDestination(user, from)} replace />;
+  if (!loading && user && (!adminOnly || user.role === 'admin')) {
+    return <Navigate to={safeDestination(user, from, adminOnly)} replace />;
   }
 
   const update = (field) => (event) => {
@@ -48,7 +49,18 @@ export default function LoginPage() {
     setServerError('');
     try {
       const loggedInUser = await login(form.email.trim(), form.password);
-      navigate(safeDestination(loggedInUser, from), { replace: true });
+
+      if (adminOnly && loggedInUser.role !== 'admin') {
+        try {
+          await logout();
+        } catch {
+          // The local session is cleared even if the logout request fails.
+        }
+        setServerError('This account is not an administrator. Please sign in with an admin account.');
+        return;
+      }
+
+      navigate(safeDestination(loggedInUser, from, adminOnly) || '/admin', { replace: true });
     } catch (error) {
       setServerError(error.message);
     } finally {
@@ -64,12 +76,21 @@ export default function LoginPage() {
 
   return (
     <AuthShell
-      eyebrow="Welcome back"
-      title="Sign in to your account"
-      subtitle="Continue to checkout, track orders and manage your purchases."
+      eyebrow={adminOnly ? 'Admin access' : 'Welcome back'}
+      title={adminOnly ? 'Sign in to the admin panel' : 'Sign in to your account'}
+      subtitle={
+        adminOnly
+          ? 'Use an administrator account to manage orders, products and analytics.'
+          : 'Continue to checkout, track orders and manage your purchases.'
+      }
     >
       <form className="form" onSubmit={handleSubmit} noValidate>
         {serverError ? <div className="form-alert" role="alert">{serverError}</div> : null}
+        {adminOnly && user?.role === 'customer' ? (
+          <p className="field-hint">
+            You are signed in as a customer. Sign in below with an administrator account to switch.
+          </p>
+        ) : null}
 
         <div className="form-field">
           <label htmlFor="email">Email address</label>
@@ -123,23 +144,31 @@ export default function LoginPage() {
 
       <div className="demo-credentials">
         <div>
-          <strong>Demo accounts</strong>
+          <strong>{adminOnly ? 'Demo administrator' : 'Demo accounts'}</strong>
           <span>Development seed data only</span>
         </div>
         <div className="demo-credentials__actions">
-          <button type="button" className="chip" onClick={() => fillDemo('ayesha@example.com', 'Customer@123')}>
-            Customer
-          </button>
+          {!adminOnly ? (
+            <button type="button" className="chip" onClick={() => fillDemo('ayesha@example.com', 'Customer@123')}>
+              Customer
+            </button>
+          ) : null}
           <button type="button" className="chip" onClick={() => fillDemo('admin@shop.pk', 'Admin@12345')}>
             Admin
           </button>
         </div>
       </div>
 
-      <p className="auth-switch">
-        New to Nexa Market?{' '}
-        <Link to="/register" state={{ from }}>Create an account</Link>
-      </p>
+      {adminOnly ? (
+        <p className="auth-switch">
+          <Link to="/">Back to storefront</Link>
+        </p>
+      ) : (
+        <p className="auth-switch">
+          New to Nexa Market?{' '}
+          <Link to="/register" state={{ from }}>Create an account</Link>
+        </p>
+      )}
     </AuthShell>
   );
 }
