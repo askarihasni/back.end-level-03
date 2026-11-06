@@ -3,10 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ShoppingBag, Trash2, X, Zap } from 'lucide-react';
 import { useCart } from '../context/CartContext.jsx';
 import { formatCurrency } from '../utils/format.js';
+import { calculateDeliveryFee, FREE_DELIVERY_THRESHOLD } from '../utils/shipping.js';
 import QuantityStepper from './QuantityStepper.jsx';
 import ProductImage from './ProductImage.jsx';
-
-const FREE_SHIPPING_THRESHOLD = 50000;
 
 export default function CartDrawer() {
   const {
@@ -44,8 +43,10 @@ export default function CartDrawer() {
     };
   }, [isDrawerOpen]);
 
-  const progress = Math.min(100, Math.round((subtotal / FREE_SHIPPING_THRESHOLD) * 100));
-  const diffToFreeShipping = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+  const progress = Math.min(100, Math.round((subtotal / FREE_DELIVERY_THRESHOLD) * 100));
+  const diffToFreeShipping = Math.max(0, FREE_DELIVERY_THRESHOLD - subtotal);
+  const deliveryFee = calculateDeliveryFee(subtotal);
+  const estimatedTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
 
   const handleCheckoutClick = () => {
     closeDrawer();
@@ -114,7 +115,7 @@ export default function CartDrawer() {
                 <ShoppingBag size={38} strokeWidth={1.5} />
               </div>
               <h3>Your cart is empty</h3>
-              <p>Explore our premium electronics and innovative audio hardware.</p>
+              <p>Explore the latest sneakers and performance athletic gear.</p>
               <button
                 type="button"
                 className="button button--primary button--medium"
@@ -154,9 +155,10 @@ export default function CartDrawer() {
                     </div>
                     <div className="cart-drawer__item-footer">
                       <QuantityStepper
-                        quantity={item.quantity}
-                        stock={item.stock}
+                        value={item.quantity}
+                        max={Math.max(1, item.stockQuantity)}
                         onChange={(qty) => updateQuantity(item.productId, qty)}
+                        label={`Quantity for ${item.name}`}
                       />
                       <div className="cart-drawer__item-line-total">
                         {formatCurrency(item.price * item.quantity)}
@@ -178,7 +180,11 @@ export default function CartDrawer() {
             </div>
             <div className="cart-drawer__summary-row text-xs text-muted">
               <span>Delivery</span>
-              <span>{diffToFreeShipping === 0 ? 'FREE' : 'Calculated at checkout'}</span>
+              <span>{deliveryFee === 0 ? 'FREE' : formatCurrency(deliveryFee)}</span>
+            </div>
+            <div className="cart-drawer__summary-row">
+              <span className="text-muted">Estimated total</span>
+              <strong className="cart-drawer__subtotal">{formatCurrency(estimatedTotal)}</strong>
             </div>
             <div className="cart-drawer__cta-stack">
               <button

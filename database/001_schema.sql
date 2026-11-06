@@ -82,21 +82,39 @@ CREATE INDEX IF NOT EXISTS idx_products_stock ON products (stock_quantity);
 -- ---------------------------------------------------------------------------
 -- orders
 -- One user can have many orders. Orders are never hard-deleted by the app.
--- total_amount is authoritative and maintained by the trigger in 002.
+-- total_amount is authoritative and maintained by the trigger in 002. It is
+-- the sum of all item line totals plus delivery_fee.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS orders (
   id            BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   user_id       BIGINT NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
   order_date    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   total_amount  NUMERIC(12, 2) NOT NULL DEFAULT 0,
+  delivery_fee  NUMERIC(12, 2) NOT NULL DEFAULT 0,
   status        order_status_enum NOT NULL DEFAULT 'pending',
   shipping_address TEXT,
   created_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at    TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT orders_total_non_negative CHECK (total_amount >= 0)
+  CONSTRAINT orders_total_non_negative CHECK (total_amount >= 0),
+  CONSTRAINT orders_delivery_fee_non_negative CHECK (delivery_fee >= 0)
 );
 
 ALTER TABLE orders ADD COLUMN IF NOT EXISTS shipping_address TEXT;
+ALTER TABLE orders ADD COLUMN IF NOT EXISTS delivery_fee NUMERIC(12, 2) NOT NULL DEFAULT 0;
+
+-- Existing databases need the check constraint added after the column exists.
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1
+    FROM pg_constraint
+    WHERE conrelid = 'orders'::regclass
+      AND conname = 'orders_delivery_fee_non_negative'
+  ) THEN
+    ALTER TABLE orders
+      ADD CONSTRAINT orders_delivery_fee_non_negative CHECK (delivery_fee >= 0);
+  END IF;
+END $$;
 
 CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders (user_id);
 CREATE INDEX IF NOT EXISTS idx_orders_status ON orders (status);

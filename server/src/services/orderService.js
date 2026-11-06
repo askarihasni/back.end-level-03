@@ -3,13 +3,17 @@ import { notFoundError } from '../utils/errors.js';
 import { paginationMeta } from '../utils/pagination.js';
 
 function mapOrderSummary(row) {
+  const totalAmount = Number(row.total_amount);
+  const deliveryFee = Number(row.delivery_fee || 0);
   return {
     id: row.id,
     userId: row.user_id,
     customerName: row.customer_name,
     customerEmail: row.customer_email,
     orderDate: row.order_date,
-    totalAmount: Number(row.total_amount),
+    subtotalAmount: Math.round((totalAmount - deliveryFee) * 100) / 100,
+    deliveryFee,
+    totalAmount,
     status: row.status,
     shippingAddress: row.shipping_address,
     itemCount: row.item_count,
@@ -71,7 +75,7 @@ export async function listMyOrders(userId, { page, limit, status }) {
   const dataParams = [...params, limit, (page - 1) * limit];
   const { rows } = await query(
     `SELECT
-       o.id, o.user_id, o.order_date, o.total_amount, o.status,
+       o.id, o.user_id, o.order_date, o.total_amount, o.delivery_fee, o.status,
        o.shipping_address,
        o.created_at, o.updated_at,
        u.name AS customer_name,
@@ -82,7 +86,7 @@ export async function listMyOrders(userId, { page, limit, status }) {
      JOIN users u ON u.id = o.user_id
      LEFT JOIN order_items oi ON oi.order_id = o.id
      ${whereSql}
-     GROUP BY o.id, u.name, u.email, o.shipping_address
+     GROUP BY o.id, u.name, u.email, o.shipping_address, o.delivery_fee
      ORDER BY o.order_date DESC, o.id DESC
      LIMIT $${dataParams.length - 1} OFFSET $${dataParams.length}`,
     dataParams
@@ -98,7 +102,7 @@ export async function listMyOrders(userId, { page, limit, status }) {
 export async function getOrderForUser(userId, orderId) {
   const { rows } = await query(
     `SELECT
-       o.id, o.user_id, o.order_date, o.total_amount, o.status,
+       o.id, o.user_id, o.order_date, o.total_amount, o.delivery_fee, o.status,
        o.shipping_address,
        o.created_at, o.updated_at,
        u.name AS customer_name, u.email AS customer_email
@@ -149,7 +153,7 @@ export async function listAdminOrders({ page, limit, status, q }) {
   const dataParams = [...params, limit, (page - 1) * limit];
   const { rows } = await query(
     `SELECT
-       o.id, o.user_id, o.order_date, o.total_amount, o.status,
+       o.id, o.user_id, o.order_date, o.total_amount, o.delivery_fee, o.status,
        o.shipping_address,
        o.created_at, o.updated_at,
        u.name AS customer_name, u.email AS customer_email,
@@ -159,7 +163,7 @@ export async function listAdminOrders({ page, limit, status, q }) {
      JOIN users u ON u.id = o.user_id
      LEFT JOIN order_items oi ON oi.order_id = o.id
      ${whereSql}
-     GROUP BY o.id, u.name, u.email, o.shipping_address
+     GROUP BY o.id, u.name, u.email, o.shipping_address, o.delivery_fee
      ORDER BY o.order_date DESC, o.id DESC
      LIMIT $${dataParams.length - 1} OFFSET $${dataParams.length}`,
     dataParams
@@ -175,7 +179,7 @@ export async function listAdminOrders({ page, limit, status, q }) {
 export async function getAdminOrderDetail(orderId) {
   const { rows } = await query(
     `SELECT
-       o.id, o.user_id, o.order_date, o.total_amount, o.status,
+       o.id, o.user_id, o.order_date, o.total_amount, o.delivery_fee, o.status,
        o.shipping_address,
        o.created_at, o.updated_at,
        u.name AS customer_name, u.email AS customer_email

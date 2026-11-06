@@ -15,9 +15,9 @@ export default function QuickViewModal({ product, onClose }) {
 
   if (!product) return null;
 
-  const inStock = product.stock_quantity > 0;
-  const isLowStock = inStock && product.stock_quantity < 5;
-  const originalPrice = Math.round(Number(product.current_price) * 1.2);
+  const inStock = product.stockQuantity > 0;
+  const isLowStock = inStock && product.stockQuantity < 5;
+  const originalPrice = Math.round(Number(product.currentPrice) * 1.2);
 
   const handleAddToCart = () => {
     if (!inStock) return;
@@ -50,10 +50,10 @@ export default function QuickViewModal({ product, onClose }) {
 
         <div className="quickview-grid">
           <div className="quickview-media">
-            <ProductImage src={product.image_url} alt={product.name} />
+            <ProductImage src={product.imageUrl} alt={product.name} />
             <div className="quickview-badge-wrap">
               {isLowStock ? (
-                <span className="badge badge--warning">Only {product.stock_quantity} left</span>
+                <span className="badge badge--warning">Only {product.stockQuantity} left</span>
               ) : inStock ? (
                 <span className="badge badge--success">In Stock</span>
               ) : (
@@ -79,7 +79,7 @@ export default function QuickViewModal({ product, onClose }) {
             <h3 className="quickview-title">{product.name}</h3>
 
             <div className="quickview-price-row">
-              <span className="quickview-price">{formatCurrency(product.current_price)}</span>
+              <span className="quickview-price">{formatCurrency(product.currentPrice)}</span>
               <span className="quickview-original-price">{formatCurrency(originalPrice)}</span>
               <span className="quickview-save-tag">SAVE 20%</span>
             </div>
@@ -103,9 +103,10 @@ export default function QuickViewModal({ product, onClose }) {
                   <div className="quickview-quantity-wrap">
                     <label className="text-xs text-muted block mb-1">Quantity</label>
                     <QuantityStepper
-                      quantity={quantity}
-                      stock={product.stock_quantity}
+                      value={quantity}
+                      max={product.stockQuantity}
                       onChange={setQuantity}
+                      label={`Quantity for ${product.name}`}
                     />
                   </div>
                   <button
@@ -123,7 +124,7 @@ export default function QuickViewModal({ product, onClose }) {
                     ) : (
                       <>
                         <ShoppingBag size={18} />
-                        <span>Add to Cart — {formatCurrency(Number(product.current_price) * quantity)}</span>
+                        <span>Add to Cart — {formatCurrency(Number(product.currentPrice) * quantity)}</span>
                       </>
                     )}
                   </button>

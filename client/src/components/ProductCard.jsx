@@ -111,18 +111,7 @@ export default function ProductCard({ product, priority = false }) {
       </article>
 
       {quickViewOpen && (
-        <QuickViewModal
-          product={{
-            id: product.id,
-            name: product.name,
-            description: product.description,
-            current_price: product.currentPrice,
-            stock_quantity: product.stockQuantity,
-            category: product.category,
-            image_url: product.imageUrl,
-          }}
-          onClose={() => setQuickViewOpen(false)}
-        />
+        <QuickViewModal product={product} onClose={() => setQuickViewOpen(false)} />
       )}
     </>
   );

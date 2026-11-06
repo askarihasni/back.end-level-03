@@ -19,6 +19,7 @@ import EmptyState from '../components/EmptyState.jsx';
 import { Spinner } from '../components/Feedback.jsx';
 import { formatCurrency } from '../utils/format.js';
 import { hasUnavailableItems } from '../utils/cart.js';
+import { calculateDeliveryFee } from '../utils/shipping.js';
 import ProductImage from '../components/ProductImage.jsx';
 
 export default function CheckoutPage() {
@@ -39,8 +40,8 @@ export default function CheckoutPage() {
   const [error, setError] = useState(null);
   const unavailable = hasUnavailableItems(items);
 
-  const deliveryFee = subtotal >= 50000 ? 0 : 450;
-  const grandTotal = subtotal + deliveryFee;
+  const deliveryFee = calculateDeliveryFee(subtotal);
+  const grandTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
 
   if (!items.length) {
     return (
@@ -48,7 +49,7 @@ export default function CheckoutPage() {
         <EmptyState
           icon={ShoppingBag}
           title="Your bag is empty"
-          description="Add premium electronics before proceeding to checkout."
+          description="Add sneakers or athletic gear before proceeding to checkout."
           action={<Link to="/#catalog" className="button button--primary">Browse Catalog</Link>}
         />
       </div>

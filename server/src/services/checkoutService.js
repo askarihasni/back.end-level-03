@@ -1,4 +1,5 @@
 import { pool } from '../config/db.js';
+import { calculateDeliveryFeeCents } from '../config/commerce.js';
 import { ApiError } from '../utils/errors.js';
 
 function moneyToCents(value) {
@@ -15,7 +16,8 @@ function moneyToCents(value) {
  *   3. create the order;
  *   4. insert items using the database price, never a client price;
  *   5. conditionally decrement stock (guaranteed >= 0);
- *   6. let the database trigger calculate orders.total_amount;
+ *   6. let the database trigger calculate orders.total_amount from the item
+ *      totals plus the server-computed delivery fee;
  *   7. commit only when every statement and row count check succeeds.
  *
  * Any failure rolls back the order, items, trigger-generated total and every
@@ -59,11 +61,17 @@ export async function checkout(userId, items, shippingAddress = null) {
       }
     }
 
+    const subtotalCents = items.reduce(
+      (sum, item) => sum + moneyToCents(products.get(item.productId).current_price) * item.quantity,
+      0
+    );
+    const deliveryFeeCents = calculateDeliveryFeeCents(subtotalCents);
+
     const orderResult = await client.query(
-      `INSERT INTO orders (user_id, status, shipping_address)
-       VALUES ($1, 'pending', $2)
-       RETURNING id, order_date, status, shipping_address`,
-      [userId, shippingAddress]
+      `INSERT INTO orders (user_id, status, shipping_address, delivery_fee)
+       VALUES ($1, 'pending', $2, $3)
+       RETURNING id, order_date, status, shipping_address, delivery_fee`,
+      [userId, shippingAddress, deliveryFeeCents / 100]
     );
     const order = orderResult.rows[0];
 
@@ -102,10 +110,7 @@ export async function checkout(userId, items, shippingAddress = null) {
     );
     const totalAmount = totalResult.rows[0].total_amount;
 
-    const expectedCents = items.reduce(
-      (sum, item) => sum + moneyToCents(products.get(item.productId).current_price) * item.quantity,
-      0
-    );
+    const expectedCents = subtotalCents + deliveryFeeCents;
     if (moneyToCents(totalAmount) !== expectedCents) {
       throw new Error('Order total invariant failed after trigger recalculation.');
     }
@@ -129,6 +134,9 @@ export async function checkout(userId, items, shippingAddress = null) {
       id: order.id,
       orderDate: order.order_date,
       status: order.status,
+      shippingAddress: order.shipping_address,
+      subtotalAmount: subtotalCents / 100,
+      deliveryFee: deliveryFeeCents / 100,
       totalAmount: Number(totalAmount),
       items: itemResult.rows.map((row) => ({
         id: row.id,

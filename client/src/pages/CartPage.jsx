@@ -8,12 +8,15 @@ import ProductImage from '../components/ProductImage.jsx';
 import QuantityStepper from '../components/QuantityStepper.jsx';
 import { formatCurrency, stockLabel } from '../utils/format.js';
 import { hasUnavailableItems } from '../utils/cart.js';
+import { calculateDeliveryFee, FREE_DELIVERY_THRESHOLD } from '../utils/shipping.js';
 
 export default function CartPage() {
   const { user } = useAuth();
   const { items, itemCount, lineCount, subtotal, updateQuantity, removeProduct, clearCart } = useCart();
   const toast = useToast();
   const unavailable = hasUnavailableItems(items);
+  const deliveryFee = calculateDeliveryFee(subtotal);
+  const estimatedTotal = Math.round((subtotal + deliveryFee) * 100) / 100;
 
   const handleRemove = (item) => {
     removeProduct(item.productId);
@@ -119,17 +122,24 @@ export default function CartPage() {
               <dd>{formatCurrency(subtotal)}</dd>
             </div>
             <div>
-              <dt>Shipping</dt>
-              <dd className="summary-list__muted">Calculated by the store</dd>
+              <dt>Delivery</dt>
+              <dd>
+                {deliveryFee === 0 ? (
+                  <span className="text-success font-semibold">FREE</span>
+                ) : (
+                  formatCurrency(deliveryFee)
+                )}
+              </dd>
             </div>
             <div className="summary-list__total">
               <dt>Estimated total</dt>
-              <dd>{formatCurrency(subtotal)}</dd>
+              <dd>{formatCurrency(estimatedTotal)}</dd>
             </div>
           </dl>
 
           <p className="summary-note">
-            Prices shown are estimates. The server rechecks every price and stock level when your order is placed.
+            Free delivery on orders over {formatCurrency(FREE_DELIVERY_THRESHOLD)}. The server rechecks every
+            price, stock level and delivery fee when your order is placed.
           </p>
 
           {!user ? (

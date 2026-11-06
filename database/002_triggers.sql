@@ -7,6 +7,7 @@
 -- Every recalculation first takes a row-level lock on the affected `orders`
 -- row (SELECT ... FOR UPDATE), then computes
 --   SUM(order_items.quantity * order_items.unit_price_at_purchase)
+--   + orders.delivery_fee
 -- and writes the result back to orders.total_amount.
 --
 -- Because the order row is the serialization point, two concurrent
@@ -51,7 +52,7 @@ CREATE TRIGGER trg_orders_set_updated_at
   EXECUTE FUNCTION fn_set_updated_at();
 
 -- ---------------------------------------------------------------------------
--- Recalculate one order total from its items.
+-- Recalculate one order total from its items plus its delivery fee.
 -- The SUM uses NUMERIC arithmetic (never floating point). If no items remain,
 -- COALESCE turns the empty SUM into exact zero.
 -- ---------------------------------------------------------------------------
@@ -60,10 +61,12 @@ RETURNS VOID
 LANGUAGE plpgsql
 AS $$
 DECLARE
-  v_total NUMERIC(12, 2);
+  v_items_total NUMERIC(12, 2);
+  v_delivery_fee NUMERIC(12, 2);
 BEGIN
   -- Serialization point for concurrent item changes on this order.
-  PERFORM 1
+  SELECT COALESCE(delivery_fee, 0)
+  INTO v_delivery_fee
   FROM orders
   WHERE id = p_order_id
   FOR UPDATE;
@@ -74,12 +77,12 @@ BEGIN
   END IF;
 
   SELECT COALESCE(SUM(quantity::NUMERIC * unit_price_at_purchase), 0)::NUMERIC(12, 2)
-  INTO v_total
+  INTO v_items_total
   FROM order_items
   WHERE order_id = p_order_id;
 
   UPDATE orders
-  SET total_amount = v_total
+  SET total_amount = (v_items_total + v_delivery_fee)::NUMERIC(12, 2)
   WHERE id = p_order_id;
 END;
 $$;
@@ -126,5 +129,28 @@ CREATE TRIGGER trg_order_items_sync_order_total
   ON order_items
   FOR EACH ROW
   EXECUTE FUNCTION fn_order_items_sync_order_total();
+
+-- ---------------------------------------------------------------------------
+-- Keep the total in sync when an administrator changes the delivery fee.
+-- This trigger only fires for delivery_fee updates; the recalculation updates
+-- total_amount, so it cannot call itself recursively.
+-- ---------------------------------------------------------------------------
+CREATE OR REPLACE FUNCTION fn_orders_sync_delivery_fee()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$
+BEGIN
+  IF NEW.delivery_fee IS DISTINCT FROM OLD.delivery_fee THEN
+    PERFORM fn_recalculate_order_total(NEW.id);
+  END IF;
+  RETURN NEW;
+END;
+$$;
+
+DROP TRIGGER IF EXISTS trg_orders_sync_delivery_fee ON orders;
+CREATE TRIGGER trg_orders_sync_delivery_fee
+  AFTER UPDATE OF delivery_fee ON orders
+  FOR EACH ROW
+  EXECUTE FUNCTION fn_orders_sync_delivery_fee();
 
 COMMIT;

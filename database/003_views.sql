@@ -5,7 +5,8 @@
 -- A PostgreSQL view does not guarantee row order, so API queries always add
 -- ORDER BY stock_quantity ASC, name ASC. A view is used (rather than a table)
 -- so the result is always current. Zero-stock products have stock_status
--- 'out_of_stock' for clear identification in the UI.
+-- 'out_of_stock' for clear identification in the UI. Inactive products are
+-- excluded because they are no longer part of the sellable catalogue.
 -- ===========================================================================
 
 BEGIN;
@@ -24,6 +25,7 @@ SELECT
     ELSE 'low_stock'
   END               AS stock_status
 FROM products p
-WHERE p.stock_quantity < 5;
+WHERE p.is_active = TRUE
+  AND p.stock_quantity < 5;
 
 COMMIT;

@@ -123,7 +123,7 @@ ORDER BY revenue_month;
 -- D. ADMIN DASHBOARD METRICS
 -- One row, all values derived from the database. Revenue/average use paid +
 -- shipped orders only. Active products = is_active TRUE. Low stock count comes
--- from vw_low_stock (stock_quantity < 5).
+-- from vw_low_stock (active products with stock_quantity < 5).
 -- ---------------------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_dashboard_metrics AS
 SELECT
