@@ -62,9 +62,6 @@ export default function Header() {
         <Logo />
 
         <nav className="site-nav" aria-label="Main navigation">
-          <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : undefined)}>
-            Catalog
-          </NavLink>
           <a href="/#catalog">Men</a>
           <a href="/#catalog">Women</a>
           <a href="/#popular-heading">New Releases</a>
@@ -168,9 +165,6 @@ export default function Header() {
           </form>
 
           <nav className="mobile-nav__links" aria-label="Mobile navigation">
-            <NavLink to="/" end>
-              Catalog
-            </NavLink>
             <a href="/#catalog">Men</a>
             <a href="/#catalog">Women</a>
             <a href="/#popular-heading">New Releases</a>
