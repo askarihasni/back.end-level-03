@@ -206,7 +206,9 @@ describe('Checkout transaction and tamper resistance', () => {
     });
 
     assert.equal(response.status, 201);
-    assert.equal(response.body.order.totalAmount, 2469);
+    assert.equal(response.body.order.totalAmount, 2919);
+    assert.equal(response.body.order.deliveryFee, 450);
+    assert.equal(response.body.order.subtotalAmount, 2469);
     assert.equal(response.body.order.items.length, 1);
     assert.equal(response.body.order.items[0].unitPriceAtPurchase, 1234.5);
     assert.equal(response.body.order.items[0].lineTotal, 2469);
