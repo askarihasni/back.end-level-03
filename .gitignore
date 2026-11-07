@@ -12,3 +12,9 @@ client/.env
 Thumbs.db
 .idea/
 .vscode/
+
+# User uploaded files
+server/uploads/*
+!server/uploads/.gitkeep
+client/public/uploads/*
+!client/public/uploads/.gitkeep

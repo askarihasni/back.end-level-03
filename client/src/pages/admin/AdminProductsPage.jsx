@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Boxes,
+  CheckCircle2,
+  ImagePlus,
+  Link as LinkIcon,
   PackagePlus,
   Pencil,
   Search,
   ToggleLeft,
   ToggleRight,
+  UploadCloud,
   X,
 } from 'lucide-react';
 import { api } from '../../services/api.js';
@@ -134,6 +138,74 @@ export default function AdminProductsPage() {
     setForm((current) => ({ ...current, [field]: value }));
     setFormErrors((current) => ({ ...current, [field]: undefined }));
     setFormError('');
+  };
+
+  const fileInputRef = useRef(null);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
+  const [showUrlInput, setShowUrlInput] = useState(false);
+
+  const handleFileUpload = async (file) => {
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please select an image file (PNG, JPG, WEBP, GIF, SVG).');
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error('Image size must be less than 10MB.');
+      return;
+    }
+
+    setUploadingImage(true);
+    try {
+      const reader = new FileReader();
+      const dataUrlPromise = new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('Failed to read image file.'));
+      });
+      reader.readAsDataURL(file);
+      const dataUrl = await dataUrlPromise;
+
+      const res = await api.post('/admin/upload', {
+        image: dataUrl,
+        filename: file.name,
+      });
+
+      if (res?.imageUrl) {
+        setForm((current) => ({ ...current, image_url: res.imageUrl }));
+        setFormErrors((current) => ({ ...current, image_url: undefined }));
+        toast.success('Picture uploaded successfully!');
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to upload picture.');
+    } finally {
+      setUploadingImage(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
+  };
+
+  const handleFileSelect = (event) => {
+    const file = event.target.files?.[0];
+    if (file) handleFileUpload(file);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setDragOver(false);
+    const file = event.dataTransfer.files?.[0];
+    if (file) handleFileUpload(file);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    setDragOver(true);
+  };
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    setDragOver(false);
   };
 
   const submitProduct = async (event) => {
@@ -391,43 +463,121 @@ export default function AdminProductsPage() {
             </div>
           </div>
 
-          <div className="form-grid">
-            <div className="form-field">
-              <label htmlFor="product-category">Category</label>
-              <input
-                id="product-category"
-                list="category-options"
-                value={form.category}
-                onChange={updateField('category')}
-                aria-invalid={Boolean(formErrors.category)}
-                placeholder="Choose or type a category"
-              />
-              <datalist id="category-options">
-                {categories.map((item) => <option value={item.name} key={item.name} />)}
-              </datalist>
-              {formErrors.category ? <span className="field-error">{formErrors.category}</span> : null}
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="product-image">Image path or URL</label>
-              <input
-                id="product-image"
-                list="image-options"
-                value={form.image_url}
-                onChange={updateField('image_url')}
-                placeholder="/images/electronics.svg"
-              />
-              <datalist id="image-options">
-                {IMAGE_OPTIONS.map((option) => <option value={option} key={option} />)}
-              </datalist>
-            </div>
+          <div className="form-field">
+            <label htmlFor="product-category">Category</label>
+            <input
+              id="product-category"
+              list="category-options"
+              value={form.category}
+              onChange={updateField('category')}
+              aria-invalid={Boolean(formErrors.category)}
+              placeholder="Choose or type a category"
+            />
+            <datalist id="category-options">
+              {categories.map((item) => <option value={item.name} key={item.name} />)}
+            </datalist>
+            {formErrors.category ? <span className="field-error">{formErrors.category}</span> : null}
           </div>
 
-          <div className="product-form__preview">
-            <ProductImage src={form.image_url} alt="Product preview" />
-            <div>
-              <strong>Preview</strong>
-              <span>Local SVG assets and http(s) URLs are supported. Broken images fall back automatically.</span>
+          <div className="form-field form-field--full">
+            <label>Product picture</label>
+            <div className="image-uploader">
+              {/* Dropzone for local file upload */}
+              <div
+                className={`image-dropzone ${dragOver ? 'image-dropzone--active' : ''} ${uploadingImage ? 'image-dropzone--uploading' : ''}`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() => fileInputRef.current?.click()}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml"
+                  onChange={handleFileSelect}
+                  style={{ display: 'none' }}
+                />
+                {uploadingImage ? (
+                  <div className="dropzone-status">
+                    <Spinner size="md" label="Uploading picture..." />
+                    <span>Uploading picture to server...</span>
+                  </div>
+                ) : (
+                  <div className="dropzone-content">
+                    <div className="dropzone-icon">
+                      <UploadCloud size={24} />
+                    </div>
+                    <div className="dropzone-text">
+                      <strong>Click to upload picture or drag and drop here</strong>
+                      <span>Supports JPG, PNG, WEBP, GIF, SVG up to 10MB</span>
+                    </div>
+                    <button type="button" className="button button--secondary button--small dropzone-btn">
+                      <ImagePlus size={15} />
+                      Browse computer
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* URL input toggle */}
+              <div className="image-url-row">
+                <button
+                  type="button"
+                  className="image-url-toggle"
+                  onClick={() => setShowUrlInput((v) => !v)}
+                >
+                  <LinkIcon size={13} />
+                  {showUrlInput ? 'Hide URL / preset options' : 'Or use custom image URL / preset'}
+                </button>
+
+                {showUrlInput && (
+                  <div className="image-url-input-wrap">
+                    <input
+                      id="product-image"
+                      list="image-options"
+                      value={form.image_url}
+                      onChange={updateField('image_url')}
+                      placeholder="/images/electronics.svg or https://..."
+                    />
+                    <datalist id="image-options">
+                      {IMAGE_OPTIONS.map((option) => <option value={option} key={option} />)}
+                    </datalist>
+                    {form.image_url ? (
+                      <button
+                        type="button"
+                        className="image-clear-btn"
+                        onClick={() => updateField('image_url')({ target: { value: '' } })}
+                        title="Clear image"
+                      >
+                        <X size={14} />
+                      </button>
+                    ) : null}
+                  </div>
+                )}
+              </div>
+
+              {/* Preview */}
+              {form.image_url && (
+                <div className="product-form__preview">
+                  <ProductImage src={form.image_url} alt="Product preview" />
+                  <div className="preview-info">
+                    <div className="preview-badge">
+                      <CheckCircle2 size={13} />
+                      Picture selected
+                    </div>
+                    <code className="preview-url">{form.image_url}</code>
+                    <span>This picture will be displayed on the storefront.</span>
+                  </div>
+                  <button
+                    type="button"
+                    className="button button--ghost button--small"
+                    onClick={() => updateField('image_url')({ target: { value: '' } })}
+                    title="Remove picture"
+                  >
+                    <X size={14} /> Remove
+                  </button>
+                </div>
+              )}
             </div>
           </div>
 

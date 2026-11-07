@@ -416,6 +416,24 @@ describe('Admin product management and validation', () => {
     assert.equal(unknown.status, 400);
   });
 
+  test('admin can upload custom product image and receive public URL', async () => {
+    const samplePng = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+    const uploadRes = await admin.post('/admin/upload', {
+      image: samplePng,
+      filename: 'my-sneaker.png',
+    });
+    assert.equal(uploadRes.status, 201);
+    assert.equal(uploadRes.body.success, true);
+    assert.match(uploadRes.body.imageUrl, /^\/uploads\/product-.+\.png$/);
+
+    // Customer is forbidden from uploading
+    const customerRes = await ayesha.post('/admin/upload', {
+      image: samplePng,
+      filename: 'hack.png',
+    });
+    assert.equal(customerRes.status, 403);
+  });
+
   test('customers cannot mutate products', async () => {
     const response = await ayesha.post('/products', {
       name: 'Customer Product',

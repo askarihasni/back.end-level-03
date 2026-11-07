@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { dashboard, lowStock, revenue, topSpenders } from '../controllers/analyticsController.js';
 import { getOrder, getOrders, patchStatus } from '../controllers/adminOrderController.js';
+import { uploadImage } from '../controllers/uploadController.js';
 import { requireAdmin, requireAuth } from '../middleware/auth.js';
 import { verifyCsrf } from '../middleware/csrf.js';
 
@@ -18,5 +19,7 @@ router.get('/analytics/low-stock', lowStock);
 router.get('/orders', getOrders);
 router.get('/orders/:id', getOrder);
 router.patch('/orders/:id/status', patchStatus);
+
+router.post('/upload', uploadImage);
 
 export default router;

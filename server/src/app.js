@@ -18,6 +18,14 @@ import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const clientDistPath = path.resolve(__dirname, '..', '..', 'client', 'dist');
+const serverUploadsPath = path.resolve(__dirname, '..', 'uploads');
+const clientUploadsPath = path.resolve(__dirname, '..', '..', 'client', 'public', 'uploads');
+try {
+  if (!fs.existsSync(serverUploadsPath)) fs.mkdirSync(serverUploadsPath, { recursive: true });
+  if (!fs.existsSync(clientUploadsPath)) fs.mkdirSync(clientUploadsPath, { recursive: true });
+} catch {
+  // directories will be created when needed
+}
 
 const app = express();
 
@@ -45,7 +53,10 @@ app.use(
 );
 
 app.use(cookieParser());
-app.use(express.json({ limit: '100kb' }));
+app.use(express.json({ limit: '12mb' }));
+app.use(express.urlencoded({ extended: true, limit: '12mb' }));
+app.use('/uploads', express.static(clientUploadsPath));
+app.use('/uploads', express.static(serverUploadsPath));
 
 if (!config.isTest) {
   app.use((req, res, next) => {
